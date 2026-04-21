@@ -1,0 +1,4390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - FashionHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .profile-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff6b6b 100%);
+            border-radius: 24px;
+            padding: 2.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .shape {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .shape-2 { top: 60%; right: 15%; animation-delay: 2s; }
+        .shape-3 { bottom: 30%; left: 20%; animation-delay: 4s; }
+        .shape-4 { top: 40%; right: 30%; animation-delay: 1s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #fff, #ff6b6b, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .welcome-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .profile-avatar-large {
+            position: relative;
+        }
+        
+        .avatar-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 4px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .avatar-circle:hover {
+            transform: scale(1.05);
+            border-color: #ff6b6b;
+        }
+        
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .online-indicator {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            background: #00ff88;
+            border-radius: 50%;
+            border: 3px solid white;
+            animation: pulse-green 2s infinite;
+        }
+        
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+        
+        .avatar-edit {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+        }
+        
+        .avatar-edit:hover {
+            transform: scale(1.15) rotate(180deg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        .pulse {
+            animation: pulse-edit 2s infinite;
+        }
+        
+        @keyframes pulse-edit {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .profile-welcome h1 {
+            font-size: 2.5rem;
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .profile-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+        
+        .stat-circle {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .stat-circle .stat-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9ff);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        .info-card:hover::before {
+            left: 100%;
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.8rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+            animation: icon-float 3s ease-in-out infinite;
+        }
+        
+        @keyframes icon-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .info-card h3 {
+            margin: 0 0 1rem 0;
+            color: #333;
+        }
+        
+        .info-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .info-item label {
+            display: block;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+        
+        .value-edit {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .value {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .value.add-new {
+            color: #667eea;
+            cursor: pointer;
+        }
+        
+        .value.enabled {
+            color: #28a745;
+        }
+        
+        .value.disabled {
+            color: #dc3545;
+        }
+        
+        .edit-btn, .toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        
+        .edit-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        .toggle-btn.active {
+            background: #28a745;
+            color: white;
+        }
+        
+        .verified-badge {
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        .inline-edit {
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            padding: 0.25rem 0.5rem;
+            font-size: inherit;
+            font-weight: inherit;
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+        
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .action-btn:hover::before {
+            left: 100%;
+        }
+        
+        .action-btn.primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .action-btn.secondary {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            color: #333;
+            border: 2px solid #667eea;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .action-btn.danger {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+        
+        .action-btn.primary:hover {
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .action-btn.danger:hover {
+            box-shadow: 0 12px 30px rgba(220, 53, 69, 0.4);
+        }
+        
+        /* Orders Section Styles */
+        .orders-header {
+            margin-bottom: 2rem;
+        }
+        
+        .orders-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .summary-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .summary-number {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .summary-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .orders-filter {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e9ecef;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .order-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .order-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+        }
+        
+        .order-card.delivered {
+            border-left-color: #28a745;
+        }
+        
+        .order-card.processing {
+            border-left-color: #ffc107;
+        }
+        
+        .order-card.shipped {
+            border-left-color: #17a2b8;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .order-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .order-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+        
+        .order-status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .order-status-badge.delivered {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+        
+        .order-status-badge.processing {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+        
+        .order-status-badge.shipped {
+            background: rgba(23, 162, 184, 0.1);
+            color: #17a2b8;
+        }
+        
+        .order-products {
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        
+        .product-image {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 12px;
+        }
+        
+        .product-details h4 {
+            margin: 0 0 0.25rem 0;
+            color: #333;
+        }
+        
+        .product-details p {
+            margin: 0 0 0.5rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .product-qty {
+            margin-left: auto;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .order-progress {
+            margin: 1.5rem 0;
+        }
+        
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e9ecef;
+            z-index: 1;
+        }
+        
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-step.completed .step-icon {
+            background: #28a745;
+            color: white;
+        }
+        
+        .progress-step.active .step-icon {
+            background: #ffc107;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        .step-label {
+            font-size: 0.8rem;
+            text-align: center;
+            color: #666;
+        }
+        
+        .order-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .total-amount {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .delivery-info {
+            text-align: right;
+        }
+        
+        .delivery-text {
+            display: block;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .delivery-date {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .shipping-info {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+        
+        .tracking-number {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tracking-id {
+            font-family: monospace;
+            background: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .copy-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+        
+        .courier-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .estimated-delivery {
+            font-weight: bold;
+            color: #17a2b8;
+        }
+        
+        .order-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Returns Section Styles */
+        .returns-header {
+            margin-bottom: 2rem;
+        }
+        
+        .returns-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .summary-card.returns {
+            background: linear-gradient(135deg, #17a2b8, #138496);
+        }
+        
+        .summary-card.refunds {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+        }
+        
+        .summary-card.pending {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+        }
+        
+        .returns-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .return-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .return-card.processing {
+            border-left-color: #ffc107;
+        }
+        
+        .return-card.approved {
+            border-left-color: #28a745;
+        }
+        
+        .return-card.completed {
+            border-left-color: #6c757d;
+        }
+        
+        .return-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .return-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .order-ref {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+        
+        .return-status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .return-status-badge.processing {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+        
+        .return-status-badge.approved {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+        
+        .return-status-badge.completed {
+            background: rgba(108, 117, 125, 0.1);
+            color: #6c757d;
+        }
+        
+        .return-product {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .return-reason {
+            color: #666;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        .return-amount {
+            text-align: right;
+            margin-left: auto;
+        }
+        
+        .return-amount .amount {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .refund-type {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .return-timeline {
+            margin: 1.5rem 0;
+        }
+        
+        .timeline-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            position: relative;
+        }
+        
+        .timeline-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 50px;
+            width: 2px;
+            height: 30px;
+            background: #e9ecef;
+        }
+        
+        .timeline-step.completed::after {
+            background: #28a745;
+        }
+        
+        .timeline-step .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .timeline-step.completed .step-icon {
+            background: #28a745;
+            color: white;
+        }
+        
+        .timeline-step.active .step-icon {
+            background: #ffc107;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        .step-info {
+            flex: 1;
+        }
+        
+        .step-title {
+            display: block;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .step-date {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .pickup-info, .refund-details {
+            margin: 1.5rem 0;
+        }
+        
+        .pickup-card, .refund-card {
+            background: #e3f2fd;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        
+        .pickup-card h4, .refund-card h4 {
+            margin: 0 0 1rem 0;
+            color: #1976d2;
+        }
+        
+        .pickup-details, .refund-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .reschedule-btn {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .new-return-form {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .eligible-order {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .returnable-product {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .return-product-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        
+        .return-policy-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .policy-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .policy-point {
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Wishlist Section Styles */
+        .wishlist-header {
+            margin-bottom: 2rem;
+        }
+        
+        .wishlist-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .wishlist-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .wishlist-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .wishlist-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+        }
+        
+        .wishlist-card.price-drop {
+            border: 2px solid #ff6b6b;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .product-image {
+            font-size: 3rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .price-drop-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            animation: bounce 2s infinite;
+        }
+        
+        .remove-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        
+        .remove-btn:hover {
+            background: #f8f9fa;
+        }
+        
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 0.5rem;
+        }
+        
+        .discount {
+            background: #28a745;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        
+        .stock-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        
+        .stock-status.out-of-stock {
+            color: #dc3545;
+        }
+        
+        .price-drop-info {
+            background: #fff3cd;
+            padding: 0.5rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+        }
+        
+        .drop-text {
+            color: #856404;
+            font-weight: 500;
+        }
+        
+        .bulk-action-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .bulk-action-btn {
+            background: #667eea;
+            color: white;
+        }
+        
+        .bulk-action-btn.secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #667eea;
+        }
+        
+        .bulk-action-btn.danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        /* Address Book Styles */
+        .addresses-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .add-address-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .addresses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .address-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .address-card.default {
+            border: 2px solid #667eea;
+        }
+        
+        .address-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .address-type {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .type-icon {
+            font-size: 1.5rem;
+        }
+        
+        .default-badge {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        
+        .address-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .edit-btn, .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .edit-btn:hover {
+            background: #e3f2fd;
+        }
+        
+        .delete-btn:hover {
+            background: #ffebee;
+        }
+        
+        .address-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tag {
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        
+        .tag.verified {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .tag.delivery {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        .set-default-btn {
+            background: #ffc107;
+            color: #212529;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .address-form {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        /* Payments Section Styles */
+        .payments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .wallet-balance-card {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .balance-amount {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .add-money-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .payment-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .payment-tab {
+            padding: 1rem 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .payment-content {
+            display: none;
+        }
+        
+        .payment-content.active {
+            display: block;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .payment-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            position: relative;
+        }
+        
+        .payment-card.mastercard {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+        }
+        
+        .card-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            letter-spacing: 2px;
+        }
+        
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .transaction-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .transaction-item.credit .transaction-icon {
+            background: #d4edda;
+        }
+        
+        .transaction-item.debit .transaction-icon {
+            background: #f8d7da;
+        }
+        
+        .transaction-amount.credit {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .transaction-amount.debit {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .upi-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .upi-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .upi-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        /* Coupons Section Styles */
+        .coupons-header {
+            margin-bottom: 2rem;
+        }
+        
+        .rewards-summary {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .rewards-card, .savings-card {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 1.5rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+        
+        .savings-card {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+        
+        .coupons-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .coupon-tab {
+            padding: 1rem 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .coupon-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .coupon-content {
+            display: none;
+        }
+        
+        .coupon-content.active {
+            display: block;
+        }
+        
+        .coupons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .coupon-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 2px dashed #e9ecef;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .coupon-card.active {
+            border-color: #ff6b6b;
+            transform: scale(1.02);
+        }
+        
+        .coupon-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .coupon-badge {
+            background: #ff6b6b;
+        }
+        
+        .coupon-badge.first-order {
+            background: #28a745;
+        }
+        
+        .coupon-badge.free-shipping {
+            background: #17a2b8;
+        }
+        
+        .coupon-code {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+        
+        .coupon-validity {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .coupon-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .apply-coupon-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            flex: 1;
+        }
+        
+        .copy-code-btn {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #667eea;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        
+        .rewards-progress {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        /* Notifications Section Styles */
+        .notifications-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .notification-summary {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .summary-item {
+            text-align: center;
+        }
+        
+        .notification-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .notification-tab {
+            padding: 1rem 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .notification-tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .notification-content {
+            display: none;
+        }
+        
+        .notification-content.active {
+            display: block;
+        }
+        
+        .notification-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .notification-item.unread {
+            border-left: 4px solid #667eea;
+            background: #f8f9ff;
+        }
+        
+        .notification-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .notification-icon.order {
+            background: #e3f2fd;
+        }
+        
+        .notification-icon.price-drop {
+            background: #fff3e0;
+        }
+        
+        .notification-icon.offer {
+            background: #f3e5f5;
+        }
+        
+        .notification-details {
+            flex: 1;
+        }
+        
+        .notification-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #667eea;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        /* Settings Section Styles */
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .security-score {
+            text-align: center;
+        }
+        
+        .score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(#28a745 0deg 306deg, #e9ecef 306deg 360deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .settings-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .settings-card.danger-zone {
+            border: 2px solid #dc3545;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+        }
+        
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .setting-status.enabled {
+            color: #28a745;
+        }
+        
+        .device-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .device-item.current {
+            background: #e8f5e8;
+            border: 1px solid #28a745;
+        }
+        
+        .danger-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .danger-btn.primary {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .danger-btn.secondary {
+            background: #f8f9fa;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+        
+        /* Help Section Styles */
+        .help-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .support-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .help-quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quick-help-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            flex: 1;
+        }
+        
+        .help-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .help-section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .help-section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .help-icon {
+            font-size: 2rem;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 1rem;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 0 0 1rem 0;
+            color: #666;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        .policy-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .policy-link:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .guide-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .guide-item:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+        
+        .guide-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+        }
+        
+        .contact-hours {
+            color: #28a745;
+            font-size: 0.9rem;
+        }
+        
+        /* Enhanced Profile Navigation Styles */
+        .profile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .nav-section-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+            padding: 0 1rem;
+        }
+        
+        .profile-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            position: relative;
+            margin-bottom: 0.25rem;
+        }
+        
+        .profile-nav-item:hover {
+            background: #f8f9ff;
+            transform: translateX(4px);
+        }
+        
+        .profile-nav-item.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .profile-nav-item.logout {
+            color: #dc3545;
+            border: 1px solid #dc3545;
+            margin-top: 1rem;
+        }
+        
+        .profile-nav-item.logout:hover {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .nav-text {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .nav-badge {
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .nav-badge.active {
+            background: #ff6b6b;
+            animation: pulse 2s infinite;
+        }
+        
+        .nav-badge.new {
+            background: #28a745;
+        }
+        
+        .nav-badge.unread {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .nav-balance {
+            background: #28a745;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .nav-status {
+            color: #28a745;
+            font-size: 1.2rem;
+        }
+        
+        .nav-status.online {
+            animation: pulse-dot 2s infinite;
+        }
+        
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .logout-section {
+            border-top: 1px solid #f0f0f0;
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+            }
+            
+            .orders-filter {
+                justify-content: center;
+            }
+            
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .order-summary {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .progress-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .progress-bar::before {
+                display: none;
+            }
+            
+            .returns-tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .return-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">FashionHub</a>
+            </div>
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products, brands and more..." id="search-input">
+                    <button class="search-btn" type="button" onclick="searchProducts()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19S2 15.194 2 10.5 5.806 2 10.5 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-icons">
+                <a href="index.html" class="offers-link">
+                    <span class="offers-text">Home</span>
+                </a>
+                <div class="dropdown profile-dropdown">
+                    <button class="dropdown-btn profile-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Profile</span>
+                    </button>
+                    <div class="dropdown-menu profile-menu">
+                        <a href="profile.html#personal-info" class="dropdown-item">My Profile</a>
+                        <a href="profile.html#orders" class="dropdown-item">My Orders</a>
+                        <a href="profile.html#wishlist" class="dropdown-item">Wishlist</a>
+                        <a href="profile.html#coupons" class="dropdown-item">Rewards</a>
+                        <a href="profile.html#payments" class="dropdown-item">Wallet</a>
+                        <a href="profile.html#address-book" class="dropdown-item">Addresses</a>
+                        <a href="profile.html#notifications" class="dropdown-item">Notifications</a>
+                        <a href="profile.html#help-support" class="dropdown-item">Help Center</a>
+                        <hr class="dropdown-divider">
+                        <a href="index.html" class="dropdown-item" onclick="handleLogout()">Logout</a>
+                    </div>
+                </div>
+                <button class="icon-btn wishlist-btn" onclick="toggleWishlist()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.9987 7.05 2.9987C5.59096 2.9987 4.19169 3.5783 3.16 4.61C2.1283 5.6417 1.5487 7.04097 1.5487 8.5C1.5487 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="wishlist-count" id="wishlist-count">0</span>
+                </button>
+                <button class="icon-btn cart-btn" onclick="toggleCart()">
+                    <div class="cart-icon-wrapper">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V17C17 18.1 16.1 19 15 19H9C7.9 19 7 18.1 7 17V13M9 19C7.9 19 7 19.9 7 21S7.9 23 9 23 11 22.1 11 21 10.1 19 9 19ZM20 19C18.9 19 18 19.9 18 21S18.9 23 20 23 22 22.1 22 21 21.1 19 20 19Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+        <nav class="category-nav">
+            <div class="category-container">
+                <div class="dropdown category-dropdown">
+                    <button class="dropdown-btn category-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 12L21 12M3 6L21 6M3 18L21 18" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Categories
+                    </button>
+                    <div class="dropdown-menu category-menu">
+                        <a href="men.html" class="dropdown-item">Men</a>
+                        <a href="women.html" class="dropdown-item">Women</a>
+                        <a href="kids.html" class="dropdown-item">Kids</a>
+                        <a href="home.html" class="dropdown-item">Home & Living</a>
+                        <a href="beauty.html" class="dropdown-item">Beauty</a>
+                        <a href="electronics.html" class="dropdown-item">Electronics</a>
+                    </div>
+                </div>
+                <div class="quick-categories">
+                    <a href="men.html" class="category-link">Men</a>
+                    <a href="women.html" class="category-link">Women</a>
+                    <a href="kids.html" class="category-link">Kids</a>
+                    <a href="home.html" class="category-link">Home</a>
+                    <a href="beauty.html" class="category-link">Beauty</a>
+                    <a href="electronics.html" class="category-link">Electronics</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="profile-page">
+        <div class="profile-container">
+            <div class="profile-sidebar">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profile-name">User</h2>
+                        <p id="profile-email">user@email.com</p>
+                    </div>
+                </div>
+                <nav class="profile-nav">
+                    <div class="nav-section">
+                        <div class="nav-section-title">💼 Account</div>
+                        <a href="#" class="profile-nav-item active" onclick="showSection('account')" data-section="account">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">Personal Info</span>
+                        </a>
+                        <a href="#" class="profile-nav-item" onclick="showSection('settings')" data-section="settings">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">Security & Privacy</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title">🛍️ Shopping</div>
+                        <a href="#" class="profile-nav-item" onclick="showSection('orders')" data-section="orders">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M16 11V7C16 4.79086 14.2091 3 12 3S8 4.79086 8 7V11M5 11H19L20 21H4L5 11Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">My Orders</span>
+                        </a>
+                        <a href="#" class="profile-nav-item" onclick="showSection('returns')" data-section="returns">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 10H21M7 3V5M17 3V5M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">Returns & Refunds</span>
+                        </a>
+                        <a href="#" class="profile-nav-item" onclick="showSection('wishlist')" data-section="wishlist">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.9987 7.05 2.9987C5.59096 2.9987 4.19169 3.5783 3.16 4.61C2.1283 5.6417 1.5487 7.04097 1.5487 8.5C1.5487 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">Wishlist</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title">💳 Payments & Rewards</div>
+                        <a href="#" class="profile-nav-item" onclick="showSection('payments')" data-section="payments">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12C22 15.7712 22 17.6569 20.8284 18.8284C19.6569 20 17.7712 20 14 20H10C6.22876 20 4.34315 20 3.17157 18.8284C2 17.6569 2 15.7712 2 12Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M10 16H6" stroke="currentColor" stroke-width="2"/>
+                                <path d="M14 16H18" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 10L22 10" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">Payments & Wallet</span>
+                        </a>
+                        <a href="#" class="profile-nav-item" onclick="showSection('coupons')" data-section="coupons">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M9.5 16L14.5 8M9.5 8H9.51M14.5 16H14.51M21 12C21 13.1046 20.1046 14 19 14C17.8954 14 17 13.1046 17 12C17 10.8954 17.8954 10 19 10C20.1046 10 21 10.8954 21 12ZM7 12C7 13.1046 6.10457 14 5 14C3.89543 14 3 13.1046 3 12C3 10.8954 3.89543 10 5 10C6.10457 10 7 10.8954 7 12ZM19 8.5H5C3.89543 8.5 3 9.39543 3 10.5V13.5C3 14.6046 3.89543 15.5 5 15.5H19C20.1046 15.5 21 14.6046 21 13.5V10.5C21 9.39543 20.1046 8.5 19 8.5Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">Coupons & Offers</span>
+                        </a>
+                        <a href="#" class="profile-nav-item" onclick="showSection('addresses')" data-section="addresses">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5.02944 7.02944 1 12 1S21 5.02944 21 10Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">Address Book</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title">🔔 Preferences</div>
+                        <a href="#" class="profile-nav-item" onclick="showSection('notifications')" data-section="notifications">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M13.73 21C13.5542 21.3031 13.3019 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">Notifications</span>
+                        </a>
+                        <a href="#" class="profile-nav-item" onclick="showSection('help')" data-section="help">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13M12 17H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">Help & Support</span>
+                            <span class="nav-status online">•</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-section logout-section">
+                        <a href="index.html" class="profile-nav-item logout" onclick="handleLogout()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9M16 17L21 12M21 12L16 7M21 12H9" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="nav-text">Log Out</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="profile-content">
+                <!-- Account Details Section -->
+                <div id="account-section" class="profile-section active">
+                    <div class="section-header">
+                        <h2>Account Information</h2>
+                        <p>Manage your personal details and account settings</p>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card personal">
+                            <div class="card-icon">👤</div>
+                            <h3>Personal Details</h3>
+                            <div class="info-item">
+                                <label>Full Name</label>
+                                <div class="value-edit">
+                                    <span class="value" id="user-full-name">Not provided</span>
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <label>Birthday</label>
+                                <div class="value-edit">
+                                    <span class="value" id="user-birthday">Not provided</span>
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <label>Gender</label>
+                                <div class="value-edit">
+                                    <span class="value" id="user-gender">Not provided</span>
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card contact">
+                            <div class="card-icon">📧</div>
+                            <h3>Contact Info</h3>
+                            <div class="info-item verified">
+                                <label>Email</label>
+                                <div class="value-edit">
+                                    <span class="value" id="user-email">Not provided</span>
+                                    <span class="verified-badge">✓</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <label>Phone</label>
+                                <div class="value-edit">
+                                    <span class="value" id="user-phone">Not provided</span>
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <label>Backup Email</label>
+                                <div class="value-edit">
+                                    <span class="value add-new">+ Add backup email</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card preferences">
+                            <div class="card-icon">⚙️</div>
+                            <h3>Preferences</h3>
+                            <div class="info-item">
+                                <label>Language</label>
+                                <div class="value-edit">
+                                    <span class="value">🇺🇸 English</span>
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <label>Currency</label>
+                                <div class="value-edit">
+                                    <span class="value">💵 USD</span>
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <label>Time Zone</label>
+                                <div class="value-edit">
+                                    <span class="value">🕐 EST (UTC-5)</span>
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card security">
+                            <div class="card-icon">🔒</div>
+                            <h3>Security</h3>
+                            <div class="info-item">
+                                <label>Password</label>
+                                <div class="value-edit">
+                                    <span class="value">••••••••</span>
+                                    <button class="edit-btn">✏️</button>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <label>Two-Factor Auth</label>
+                                <div class="value-edit">
+                                    <span class="value enabled">Enabled</span>
+                                    <button class="toggle-btn active">🔐</button>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <label>Login Sessions</label>
+                                <div class="value-edit">
+                                    <span class="value">3 active devices</span>
+                                    <button class="edit-btn">👁️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button class="action-btn primary">
+                            <span class="btn-icon">💾</span>
+                            Save Changes
+                        </button>
+                        <button class="action-btn secondary">
+                            <span class="btn-icon">📥</span>
+                            Export Data
+                        </button>
+                        <button class="action-btn danger">
+                            <span class="btn-icon">🗑️</span>
+                            Delete Account
+                        </button>
+                    </div>
+                </div>
+
+                <!-- My Orders Section -->
+                <div id="orders-section" class="profile-section">
+                    <div class="orders-header">
+                        <h1>🛍️ My Orders</h1>
+                        <div class="orders-summary">
+                            <div class="summary-card">
+                                <span class="summary-number">24</span>
+                                <span class="summary-label">Total Orders</span>
+                            </div>
+                            <div class="summary-card">
+                                <span class="summary-number">₹45,670</span>
+                                <span class="summary-label">Total Spent</span>
+                            </div>
+                            <div class="summary-card">
+                                <span class="summary-number">3</span>
+                                <span class="summary-label">Active Orders</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="orders-filter">
+                        <button class="filter-btn active" onclick="filterOrders('all')">All Orders</button>
+                        <button class="filter-btn" onclick="filterOrders('delivered')">✅ Delivered</button>
+                        <button class="filter-btn" onclick="filterOrders('processing')">⏳ Processing</button>
+                        <button class="filter-btn" onclick="filterOrders('shipped')">🚚 Shipped</button>
+                        <button class="filter-btn" onclick="filterOrders('cancelled')">❌ Cancelled</button>
+                    </div>
+
+                    <div class="orders-timeline">
+                        <div class="order-card delivered" data-status="delivered">
+                            <div class="order-header">
+                                <div class="order-id">
+                                    <span class="order-number">#FH2024001</span>
+                                    <span class="order-date">📅 March 15, 2024</span>
+                                </div>
+                                <div class="order-status-badge delivered">
+                                    <span class="status-icon">✅</span>
+                                    <span class="status-text">Delivered</span>
+                                </div>
+                            </div>
+                            
+                            <div class="order-products">
+                                <div class="product-item">
+                                    <div class="product-image">👕</div>
+                                    <div class="product-details">
+                                        <h4>Classic Cotton T-Shirt</h4>
+                                        <p>Size: L | Color: Navy Blue</p>
+                                        <span class="product-price">₹799</span>
+                                    </div>
+                                    <div class="product-qty">Qty: 2</div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-image">👖</div>
+                                    <div class="product-details">
+                                        <h4>Slim Fit Jeans</h4>
+                                        <p>Size: 32 | Color: Dark Blue</p>
+                                        <span class="product-price">₹1,999</span>
+                                    </div>
+                                    <div class="product-qty">Qty: 1</div>
+                                </div>
+                            </div>
+                            
+                            <div class="order-summary">
+                                <div class="order-total">
+                                    <span class="total-label">Total Amount:</span>
+                                    <span class="total-amount">₹3,597</span>
+                                </div>
+                                <div class="delivery-info">
+                                    <span class="delivery-text">🏠 Delivered to Home</span>
+                                    <span class="delivery-date">March 18, 2024</span>
+                                </div>
+                            </div>
+                            
+                            <div class="order-actions">
+                                <button class="action-btn primary">🔄 Reorder</button>
+                                <button class="action-btn secondary">📄 View Invoice</button>
+                                <button class="action-btn secondary">⭐ Rate Products</button>
+                                <button class="action-btn secondary">🔄 Return/Exchange</button>
+                            </div>
+                        </div>
+
+                        <div class="order-card processing" data-status="processing">
+                            <div class="order-header">
+                                <div class="order-id">
+                                    <span class="order-number">#FH2024002</span>
+                                    <span class="order-date">📅 March 20, 2024</span>
+                                </div>
+                                <div class="order-status-badge processing">
+                                    <span class="status-icon">⏳</span>
+                                    <span class="status-text">Processing</span>
+                                </div>
+                            </div>
+                            
+                            <div class="order-products">
+                                <div class="product-item">
+                                    <div class="product-image">👗</div>
+                                    <div class="product-details">
+                                        <h4>Summer Floral Dress</h4>
+                                        <p>Size: M | Color: Pink</p>
+                                        <span class="product-price">₹2,499</span>
+                                    </div>
+                                    <div class="product-qty">Qty: 1</div>
+                                </div>
+                            </div>
+                            
+                            <div class="order-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-step completed">
+                                        <div class="step-icon">✅</div>
+                                        <span class="step-label">Order Placed</span>
+                                    </div>
+                                    <div class="progress-step completed">
+                                        <div class="step-icon">✅</div>
+                                        <span class="step-label">Payment Confirmed</span>
+                                    </div>
+                                    <div class="progress-step active">
+                                        <div class="step-icon">⏳</div>
+                                        <span class="step-label">Processing</span>
+                                    </div>
+                                    <div class="progress-step">
+                                        <div class="step-icon">📦</div>
+                                        <span class="step-label">Shipped</span>
+                                    </div>
+                                    <div class="progress-step">
+                                        <div class="step-icon">🏠</div>
+                                        <span class="step-label">Delivered</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="order-summary">
+                                <div class="order-total">
+                                    <span class="total-label">Total Amount:</span>
+                                    <span class="total-amount">₹2,499</span>
+                                </div>
+                                <div class="delivery-info">
+                                    <span class="delivery-text">📍 Delivering to Home</span>
+                                    <span class="delivery-date">Expected: March 25, 2024</span>
+                                </div>
+                            </div>
+                            
+                            <div class="order-actions">
+                                <button class="action-btn primary">📍 Track Order</button>
+                                <button class="action-btn secondary">💬 Contact Support</button>
+                                <button class="action-btn danger">❌ Cancel Order</button>
+                            </div>
+                        </div>
+
+                        <div class="order-card shipped" data-status="shipped">
+                            <div class="order-header">
+                                <div class="order-id">
+                                    <span class="order-number">#FH2024003</span>
+                                    <span class="order-date">📅 March 22, 2024</span>
+                                </div>
+                                <div class="order-status-badge shipped">
+                                    <span class="status-icon">🚚</span>
+                                    <span class="status-text">Shipped</span>
+                                </div>
+                            </div>
+                            
+                            <div class="order-products">
+                                <div class="product-item">
+                                    <div class="product-image">👟</div>
+                                    <div class="product-details">
+                                        <h4>Running Sneakers</h4>
+                                        <p>Size: 9 | Color: White</p>
+                                        <span class="product-price">₹3,999</span>
+                                    </div>
+                                    <div class="product-qty">Qty: 1</div>
+                                </div>
+                            </div>
+                            
+                            <div class="shipping-info">
+                                <div class="tracking-number">
+                                    <span class="tracking-label">📦 Tracking ID:</span>
+                                    <span class="tracking-id">FH2024003TRK</span>
+                                    <button class="copy-btn" onclick="copyTracking('FH2024003TRK')">📋</button>
+                                </div>
+                                <div class="courier-info">
+                                    <span class="courier-name">🚚 BlueDart Express</span>
+                                    <span class="estimated-delivery">Arriving Tomorrow</span>
+                                </div>
+                            </div>
+                            
+                            <div class="order-actions">
+                                <button class="action-btn primary">📍 Live Tracking</button>
+                                <button class="action-btn secondary">📞 Call Courier</button>
+                                <button class="action-btn secondary">📍 Change Address</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Returns & Refunds Section -->
+                <div id="returns-section" class="profile-section">
+                    <div class="returns-header">
+                        <h1>🔄 Returns & Refunds</h1>
+                        <div class="returns-summary">
+                            <div class="summary-card returns">
+                                <span class="summary-number">5</span>
+                                <span class="summary-label">Total Returns</span>
+                            </div>
+                            <div class="summary-card refunds">
+                                <span class="summary-number">₹8,450</span>
+                                <span class="summary-label">Refunded Amount</span>
+                            </div>
+                            <div class="summary-card pending">
+                                <span class="summary-number">2</span>
+                                <span class="summary-label">Pending Requests</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="returns-tabs">
+                        <button class="tab-btn active" onclick="switchTab('active')">🔄 Active Returns</button>
+                        <button class="tab-btn" onclick="switchTab('completed')">✅ Completed</button>
+                        <button class="tab-btn" onclick="switchTab('new')">➕ New Return</button>
+                    </div>
+
+                    <div class="tab-content active" id="active-tab">
+                        <div class="return-card processing">
+                            <div class="return-header">
+                                <div class="return-id">
+                                    <span class="return-number">#RT2024001</span>
+                                    <span class="order-ref">📦 Order #FH2024001</span>
+                                </div>
+                                <div class="return-status-badge processing">
+                                    <span class="status-icon">⏳</span>
+                                    <span class="status-text">Processing</span>
+                                </div>
+                            </div>
+
+                            <div class="return-product">
+                                <div class="product-image">👕</div>
+                                <div class="product-details">
+                                    <h4>Classic Cotton T-Shirt</h4>
+                                    <p>Size: L | Color: Navy Blue</p>
+                                    <span class="return-reason">📝 Reason: Size too large</span>
+                                </div>
+                                <div class="return-amount">
+                                    <span class="amount">₹799</span>
+                                    <span class="refund-type">💳 Refund</span>
+                                </div>
+                            </div>
+
+                            <div class="return-timeline">
+                                <div class="timeline-step completed">
+                                    <div class="step-icon">✅</div>
+                                    <div class="step-info">
+                                        <span class="step-title">Return Requested</span>
+                                        <span class="step-date">March 20, 2024</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-step completed">
+                                    <div class="step-icon">✅</div>
+                                    <div class="step-info">
+                                        <span class="step-title">Return Approved</span>
+                                        <span class="step-date">March 21, 2024</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-step active">
+                                    <div class="step-icon">📦</div>
+                                    <div class="step-info">
+                                        <span class="step-title">Pickup Scheduled</span>
+                                        <span class="step-date">March 23, 2024</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-step">
+                                    <div class="step-icon">🏭</div>
+                                    <div class="step-info">
+                                        <span class="step-title">Quality Check</span>
+                                        <span class="step-date">Pending</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-step">
+                                    <div class="step-icon">💰</div>
+                                    <div class="step-info">
+                                        <span class="step-title">Refund Processed</span>
+                                        <span class="step-date">Pending</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="return-actions">
+                                <button class="action-btn primary">📞 Contact Support</button>
+                                <button class="action-btn secondary">📋 View Details</button>
+                                <button class="action-btn danger">❌ Cancel Return</button>
+                            </div>
+                        </div>
+
+                        <div class="return-card approved">
+                            <div class="return-header">
+                                <div class="return-id">
+                                    <span class="return-number">#RT2024002</span>
+                                    <span class="order-ref">📦 Order #FH2024003</span>
+                                </div>
+                                <div class="return-status-badge approved">
+                                    <span class="status-icon">✅</span>
+                                    <span class="status-text">Approved</span>
+                                </div>
+                            </div>
+
+                            <div class="return-product">
+                                <div class="product-image">👟</div>
+                                <div class="product-details">
+                                    <h4>Running Sneakers</h4>
+                                    <p>Size: 9 | Color: White</p>
+                                    <span class="return-reason">📝 Reason: Defective product</span>
+                                </div>
+                                <div class="return-amount">
+                                    <span class="amount">₹3,999</span>
+                                    <span class="refund-type">🔄 Exchange</span>
+                                </div>
+                            </div>
+
+                            <div class="pickup-info">
+                                <div class="pickup-card">
+                                    <h4>📦 Pickup Details</h4>
+                                    <div class="pickup-details">
+                                        <span class="pickup-date">📅 Tomorrow, March 24</span>
+                                        <span class="pickup-time">🕐 10:00 AM - 2:00 PM</span>
+                                        <span class="pickup-address">🏠 123 Main Street, Apartment 4B</span>
+                                    </div>
+                                    <button class="reschedule-btn">📅 Reschedule Pickup</button>
+                                </div>
+                            </div>
+
+                            <div class="return-actions">
+                                <button class="action-btn primary">📋 Pickup Instructions</button>
+                                <button class="action-btn secondary">📞 Call Pickup Agent</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="completed-tab">
+                        <div class="return-card completed">
+                            <div class="return-header">
+                                <div class="return-id">
+                                    <span class="return-number">#RT2024000</span>
+                                    <span class="order-ref">📦 Order #FH2023099</span>
+                                </div>
+                                <div class="return-status-badge completed">
+                                    <span class="status-icon">✅</span>
+                                    <span class="status-text">Completed</span>
+                                </div>
+                            </div>
+
+                            <div class="return-product">
+                                <div class="product-image">👗</div>
+                                <div class="product-details">
+                                    <h4>Summer Floral Dress</h4>
+                                    <p>Size: M | Color: Pink</p>
+                                    <span class="return-reason">📝 Reason: Wrong size delivered</span>
+                                </div>
+                                <div class="return-amount">
+                                    <span class="amount">₹2,499</span>
+                                    <span class="refund-type">💳 Refunded</span>
+                                </div>
+                            </div>
+
+                            <div class="refund-details">
+                                <div class="refund-card">
+                                    <h4>💰 Refund Information</h4>
+                                    <div class="refund-info">
+                                        <span class="refund-amount">Amount: ₹2,499</span>
+                                        <span class="refund-method">Method: Original Payment Method</span>
+                                        <span class="refund-date">Date: March 15, 2024</span>
+                                        <span class="refund-id">Transaction ID: REF2024000123</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="return-actions">
+                                <button class="action-btn secondary">📄 Download Receipt</button>
+                                <button class="action-btn secondary">⭐ Rate Experience</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="new-tab">
+                        <div class="new-return-form">
+                            <h3>🆕 Request New Return</h3>
+                            <div class="eligible-orders">
+                                <h4>📦 Eligible Orders for Return</h4>
+                                <div class="eligible-order">
+                                    <div class="order-info">
+                                        <span class="order-id">#FH2024004</span>
+                                        <span class="order-date">Delivered: March 18, 2024</span>
+                                        <span class="return-window">⏰ 12 days left to return</span>
+                                    </div>
+                                    <div class="order-products">
+                                        <div class="returnable-product">
+                                            <div class="product-image">🧥</div>
+                                            <div class="product-info">
+                                                <h5>Winter Jacket</h5>
+                                                <p>Size: XL | Color: Black</p>
+                                                <span class="product-price">₹4,999</span>
+                                            </div>
+                                            <button class="return-product-btn">🔄 Return This</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="return-policy-info">
+                                <h4>📋 Return Policy</h4>
+                                <div class="policy-points">
+                                    <div class="policy-point">✅ 30-day return window</div>
+                                    <div class="policy-point">✅ Free pickup service</div>
+                                    <div class="policy-point">✅ Full refund on original payment method</div>
+                                    <div class="policy-point">✅ Exchange available for size/color</div>
+                                    <div class="policy-point">❌ Items must be in original condition</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wishlist Section -->
+                <div id="wishlist-section" class="profile-section">
+                    <div class="wishlist-header">
+                        <h1>💖 My Wishlist</h1>
+                        <div class="wishlist-stats">
+                            <div class="stat-card">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">Items Saved</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">₹12,450</span>
+                                <span class="stat-label">Total Value</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-number">3</span>
+                                <span class="stat-label">Price Drops</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wishlist-filters">
+                        <button class="filter-btn active" onclick="filterWishlist('all')">🛍️ All Items</button>
+                        <button class="filter-btn" onclick="filterWishlist('in-stock')">✅ In Stock</button>
+                        <button class="filter-btn" onclick="filterWishlist('price-drop')">📉 Price Drops</button>
+                        <button class="filter-btn" onclick="filterWishlist('out-of-stock')">❌ Out of Stock</button>
+                    </div>
+
+                    <div class="wishlist-grid">
+                        <div class="wishlist-card in-stock" data-category="in-stock">
+                            <div class="card-header">
+                                <div class="product-image">👕</div>
+                                <button class="remove-btn" onclick="removeFromWishlist(1)">❌</button>
+                            </div>
+                            <div class="product-details">
+                                <h4>Classic Cotton T-Shirt</h4>
+                                <p class="brand">FashionHub Essentials</p>
+                                <div class="price-info">
+                                    <span class="current-price">₹799</span>
+                                    <span class="original-price">₹1,299</span>
+                                    <span class="discount">38% OFF</span>
+                                </div>
+                                <div class="stock-status in-stock">
+                                    <span class="status-icon">✅</span>
+                                    <span class="status-text">In Stock</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn primary">🛒 Add to Cart</button>
+                                <button class="action-btn secondary">🔔 Price Alert</button>
+                            </div>
+                        </div>
+
+                        <div class="wishlist-card price-drop" data-category="price-drop">
+                            <div class="card-header">
+                                <div class="product-image">👖</div>
+                                <div class="price-drop-badge">📉 Price Drop!</div>
+                                <button class="remove-btn" onclick="removeFromWishlist(2)">❌</button>
+                            </div>
+                            <div class="product-details">
+                                <h4>Slim Fit Jeans</h4>
+                                <p class="brand">Denim Co.</p>
+                                <div class="price-info">
+                                    <span class="current-price">₹1,599</span>
+                                    <span class="original-price">₹2,499</span>
+                                    <span class="discount">36% OFF</span>
+                                </div>
+                                <div class="price-drop-info">
+                                    <span class="drop-text">📉 Dropped by ₹300</span>
+                                    <span class="drop-date">2 days ago</span>
+                                </div>
+                                <div class="stock-status in-stock">
+                                    <span class="status-icon">✅</span>
+                                    <span class="status-text">Limited Stock</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn primary">🛒 Add to Cart</button>
+                                <button class="action-btn secondary">📱 Share Deal</button>
+                            </div>
+                        </div>
+
+                        <div class="wishlist-card out-of-stock" data-category="out-of-stock">
+                            <div class="card-header">
+                                <div class="product-image">👗</div>
+                                <button class="remove-btn" onclick="removeFromWishlist(3)">❌</button>
+                            </div>
+                            <div class="product-details">
+                                <h4>Summer Floral Dress</h4>
+                                <p class="brand">Trendy Styles</p>
+                                <div class="price-info">
+                                    <span class="current-price">₹2,199</span>
+                                    <span class="original-price">₹3,499</span>
+                                    <span class="discount">37% OFF</span>
+                                </div>
+                                <div class="stock-status out-of-stock">
+                                    <span class="status-icon">❌</span>
+                                    <span class="status-text">Out of Stock</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn disabled">🔔 Notify When Available</button>
+                                <button class="action-btn secondary">🔍 Find Similar</button>
+                            </div>
+                        </div>
+
+                        <div class="wishlist-card in-stock" data-category="in-stock">
+                            <div class="card-header">
+                                <div class="product-image">👟</div>
+                                <button class="remove-btn" onclick="removeFromWishlist(4)">❌</button>
+                            </div>
+                            <div class="product-details">
+                                <h4>Running Sneakers</h4>
+                                <p class="brand">SportMax</p>
+                                <div class="price-info">
+                                    <span class="current-price">₹3,999</span>
+                                    <span class="original-price">₹5,999</span>
+                                    <span class="discount">33% OFF</span>
+                                </div>
+                                <div class="stock-status in-stock">
+                                    <span class="status-icon">✅</span>
+                                    <span class="status-text">In Stock</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn primary">🛒 Add to Cart</button>
+                                <button class="action-btn secondary">📏 Size Guide</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wishlist-actions">
+                        <button class="bulk-action-btn">🛒 Add All to Cart</button>
+                        <button class="bulk-action-btn secondary">📤 Share Wishlist</button>
+                        <button class="bulk-action-btn danger">🗑️ Clear Wishlist</button>
+                    </div>
+                </div>
+
+                <!-- Address Book Section -->
+                <div id="addresses-section" class="profile-section">
+                    <div class="addresses-header">
+                        <h1>🏠 Address Book</h1>
+                        <button class="add-address-btn" onclick="showAddressForm()">➕ Add New Address</button>
+                    </div>
+
+                    <div class="addresses-grid">
+                        <div class="address-card default">
+                            <div class="address-header">
+                                <div class="address-type">
+                                    <span class="type-icon">🏠</span>
+                                    <span class="type-name">Home</span>
+                                    <span class="default-badge">Default</span>
+                                </div>
+                                <div class="address-actions">
+                                    <button class="edit-btn" onclick="editAddress(1)">✏️</button>
+                                    <button class="delete-btn" onclick="deleteAddress(1)">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="address-details">
+                                <h4>John Doe</h4>
+                                <p class="address-line">123 Main Street, Apartment 4B</p>
+                                <p class="address-line">New York, NY 10001</p>
+                                <p class="phone">📞 +1 (234) 567-8900</p>
+                            </div>
+                            <div class="address-tags">
+                                <span class="tag verified">✅ Verified</span>
+                                <span class="tag delivery">🚚 Fast Delivery</span>
+                            </div>
+                        </div>
+
+                        <div class="address-card">
+                            <div class="address-header">
+                                <div class="address-type">
+                                    <span class="type-icon">🏢</span>
+                                    <span class="type-name">Office</span>
+                                </div>
+                                <div class="address-actions">
+                                    <button class="edit-btn" onclick="editAddress(2)">✏️</button>
+                                    <button class="delete-btn" onclick="deleteAddress(2)">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="address-details">
+                                <h4>John Doe</h4>
+                                <p class="address-line">456 Business Plaza, Floor 12</p>
+                                <p class="address-line">Manhattan, NY 10005</p>
+                                <p class="phone">📞 +1 (234) 567-8900</p>
+                            </div>
+                            <div class="address-tags">
+                                <span class="tag verified">✅ Verified</span>
+                                <span class="tag business">💼 Business Hours</span>
+                            </div>
+                            <button class="set-default-btn">⭐ Set as Default</button>
+                        </div>
+
+                        <div class="address-card">
+                            <div class="address-header">
+                                <div class="address-type">
+                                    <span class="type-icon">👨‍👩‍👧‍👦</span>
+                                    <span class="type-name">Parents</span>
+                                </div>
+                                <div class="address-actions">
+                                    <button class="edit-btn" onclick="editAddress(3)">✏️</button>
+                                    <button class="delete-btn" onclick="deleteAddress(3)">🗑️</button>
+                                </div>
+                            </div>
+                            <div class="address-details">
+                                <h4>Robert & Mary Doe</h4>
+                                <p class="address-line">789 Suburban Lane</p>
+                                <p class="address-line">Brooklyn, NY 11201</p>
+                                <p class="phone">📞 +1 (234) 567-8901</p>
+                            </div>
+                            <div class="address-tags">
+                                <span class="tag verified">✅ Verified</span>
+                                <span class="tag weekend">📅 Weekend Delivery</span>
+                            </div>
+                            <button class="set-default-btn">⭐ Set as Default</button>
+                        </div>
+                    </div>
+
+                    <div class="address-form" id="address-form" style="display: none;">
+                        <h3>➕ Add New Address</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Address Type</label>
+                                <select>
+                                    <option>🏠 Home</option>
+                                    <option>🏢 Office</option>
+                                    <option>👨‍👩‍👧‍👦 Family</option>
+                                    <option>🎁 Gift</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" placeholder="Enter full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" placeholder="Enter phone number">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Street Address</label>
+                                <input type="text" placeholder="House/Flat/Office No, Building Name">
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" placeholder="Enter city">
+                            </div>
+                            <div class="form-group">
+                                <label>ZIP Code</label>
+                                <input type="text" placeholder="Enter ZIP code">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button class="action-btn primary">💾 Save Address</button>
+                            <button class="action-btn secondary" onclick="hideAddressForm()">❌ Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payments & Wallet Section -->
+                <div id="payments-section" class="profile-section">
+                    <div class="payments-header">
+                        <h1>💳 Payments & Wallet</h1>
+                        <div class="wallet-balance-card">
+                            <div class="balance-info">
+                                <span class="balance-label">💰 Wallet Balance</span>
+                                <span class="balance-amount">₹2,450.00</span>
+                            </div>
+                            <button class="add-money-btn">➕ Add Money</button>
+                        </div>
+                    </div>
+
+                    <div class="payment-tabs">
+                        <button class="payment-tab active" onclick="switchPaymentTab('cards')">💳 Cards</button>
+                        <button class="payment-tab" onclick="switchPaymentTab('wallet')">💰 Wallet</button>
+                        <button class="payment-tab" onclick="switchPaymentTab('upi')">📱 UPI</button>
+                    </div>
+
+                    <div class="payment-content active" id="cards-content">
+                        <div class="cards-section">
+                            <div class="section-header">
+                                <h3>💳 Saved Cards</h3>
+                                <button class="add-card-btn" onclick="showCardForm()">➕ Add New Card</button>
+                            </div>
+                            
+                            <div class="cards-grid">
+                                <div class="payment-card visa">
+                                    <div class="card-header">
+                                        <span class="card-type">💳 Visa</span>
+                                        <button class="remove-card-btn">❌</button>
+                                    </div>
+                                    <div class="card-number">**** **** **** 1234</div>
+                                    <div class="card-details">
+                                        <span class="card-name">John Doe</span>
+                                        <span class="card-expiry">12/26</span>
+                                    </div>
+                                    <div class="card-status">
+                                        <span class="status-badge verified">✅ Verified</span>
+                                        <span class="default-badge">⭐ Default</span>
+                                    </div>
+                                </div>
+
+                                <div class="payment-card mastercard">
+                                    <div class="card-header">
+                                        <span class="card-type">💳 Mastercard</span>
+                                        <button class="remove-card-btn">❌</button>
+                                    </div>
+                                    <div class="card-number">**** **** **** 5678</div>
+                                    <div class="card-details">
+                                        <span class="card-name">John Doe</span>
+                                        <span class="card-expiry">08/27</span>
+                                    </div>
+                                    <div class="card-actions">
+                                        <button class="set-default-btn">⭐ Set Default</button>
+                                        <button class="verify-btn">✅ Verify</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-content" id="wallet-content">
+                        <div class="wallet-section">
+                            <div class="wallet-overview">
+                                <div class="balance-card">
+                                    <h3>💰 Current Balance</h3>
+                                    <div class="balance-display">₹2,450.00</div>
+                                    <div class="balance-actions">
+                                        <button class="action-btn primary">➕ Add Money</button>
+                                        <button class="action-btn secondary">📤 Send Money</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="wallet-transactions">
+                                <h3>📊 Recent Transactions</h3>
+                                <div class="transaction-list">
+                                    <div class="transaction-item credit">
+                                        <div class="transaction-icon">➕</div>
+                                        <div class="transaction-details">
+                                            <span class="transaction-type">Money Added</span>
+                                            <span class="transaction-date">March 20, 2024</span>
+                                        </div>
+                                        <div class="transaction-amount credit">+₹1,000</div>
+                                    </div>
+                                    <div class="transaction-item debit">
+                                        <div class="transaction-icon">🛒</div>
+                                        <div class="transaction-details">
+                                            <span class="transaction-type">Order Payment</span>
+                                            <span class="transaction-date">March 18, 2024</span>
+                                        </div>
+                                        <div class="transaction-amount debit">-₹2,499</div>
+                                    </div>
+                                    <div class="transaction-item credit">
+                                        <div class="transaction-icon">🎁</div>
+                                        <div class="transaction-details">
+                                            <span class="transaction-type">Cashback Received</span>
+                                            <span class="transaction-date">March 15, 2024</span>
+                                        </div>
+                                        <div class="transaction-amount credit">+₹125</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-content" id="upi-content">
+                        <div class="upi-section">
+                            <div class="section-header">
+                                <h3>📱 UPI IDs</h3>
+                                <button class="add-upi-btn" onclick="showUpiForm()">➕ Add UPI ID</button>
+                            </div>
+                            
+                            <div class="upi-list">
+                                <div class="upi-item">
+                                    <div class="upi-icon">📱</div>
+                                    <div class="upi-details">
+                                        <span class="upi-id">john.doe@paytm</span>
+                                        <span class="upi-provider">Paytm</span>
+                                    </div>
+                                    <div class="upi-status">
+                                        <span class="status-badge verified">✅ Verified</span>
+                                        <button class="remove-upi-btn">❌</button>
+                                    </div>
+                                </div>
+                                <div class="upi-item">
+                                    <div class="upi-icon">📱</div>
+                                    <div class="upi-details">
+                                        <span class="upi-id">9876543210@gpay</span>
+                                        <span class="upi-provider">Google Pay</span>
+                                    </div>
+                                    <div class="upi-status">
+                                        <span class="status-badge verified">✅ Verified</span>
+                                        <button class="remove-upi-btn">❌</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coupons & Offers Section -->
+                <div id="coupons-section" class="profile-section">
+                    <div class="coupons-header">
+                        <h1>🎟️ Coupons & Offers</h1>
+                        <div class="rewards-summary">
+                            <div class="rewards-card">
+                                <span class="rewards-icon">⭐</span>
+                                <div class="rewards-info">
+                                    <span class="rewards-points">2,450</span>
+                                    <span class="rewards-label">Reward Points</span>
+                                </div>
+                            </div>
+                            <div class="savings-card">
+                                <span class="savings-icon">💰</span>
+                                <div class="savings-info">
+                                    <span class="savings-amount">₹3,250</span>
+                                    <span class="savings-label">Total Saved</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="coupons-tabs">
+                        <button class="coupon-tab active" onclick="switchCouponTab('available')">🎫 Available</button>
+                        <button class="coupon-tab" onclick="switchCouponTab('used')">✅ Used</button>
+                        <button class="coupon-tab" onclick="switchCouponTab('expired')">⏰ Expired</button>
+                    </div>
+
+                    <div class="coupon-content active" id="available-content">
+                        <div class="coupons-grid">
+                            <div class="coupon-card active">
+                                <div class="coupon-header">
+                                    <div class="coupon-badge">🔥 HOT DEAL</div>
+                                    <div class="coupon-code">SAVE30</div>
+                                </div>
+                                <div class="coupon-details">
+                                    <h4>30% Off on Fashion</h4>
+                                    <p>Get 30% discount on all fashion items above ₹2,999</p>
+                                    <div class="coupon-validity">
+                                        <span class="validity-text">⏰ Valid till March 31, 2024</span>
+                                        <span class="usage-limit">🎯 Use 2 more times</span>
+                                    </div>
+                                </div>
+                                <div class="coupon-actions">
+                                    <button class="apply-coupon-btn">🛒 Apply Now</button>
+                                    <button class="copy-code-btn" onclick="copyCouponCode('SAVE30')">📋 Copy Code</button>
+                                </div>
+                            </div>
+
+                            <div class="coupon-card">
+                                <div class="coupon-header">
+                                    <div class="coupon-badge first-order">🎉 FIRST ORDER</div>
+                                    <div class="coupon-code">WELCOME50</div>
+                                </div>
+                                <div class="coupon-details">
+                                    <h4>₹500 Off First Order</h4>
+                                    <p>Flat ₹500 discount on your first order above ₹1,999</p>
+                                    <div class="coupon-validity">
+                                        <span class="validity-text">⏰ Valid till April 15, 2024</span>
+                                        <span class="usage-limit">🎯 One time use</span>
+                                    </div>
+                                </div>
+                                <div class="coupon-actions">
+                                    <button class="apply-coupon-btn">🛒 Apply Now</button>
+                                    <button class="copy-code-btn" onclick="copyCouponCode('WELCOME50')">📋 Copy Code</button>
+                                </div>
+                            </div>
+
+                            <div class="coupon-card">
+                                <div class="coupon-header">
+                                    <div class="coupon-badge free-shipping">🚚 FREE SHIPPING</div>
+                                    <div class="coupon-code">FREESHIP</div>
+                                </div>
+                                <div class="coupon-details">
+                                    <h4>Free Shipping</h4>
+                                    <p>Get free shipping on all orders above ₹999</p>
+                                    <div class="coupon-validity">
+                                        <span class="validity-text">⏰ Valid till March 25, 2024</span>
+                                        <span class="usage-limit">🎯 Unlimited use</span>
+                                    </div>
+                                </div>
+                                <div class="coupon-actions">
+                                    <button class="apply-coupon-btn">🛒 Apply Now</button>
+                                    <button class="copy-code-btn" onclick="copyCouponCode('FREESHIP')">📋 Copy Code</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="coupon-content" id="used-content">
+                        <div class="used-coupons">
+                            <div class="used-coupon-item">
+                                <div class="used-coupon-info">
+                                    <span class="used-code">SAVE20</span>
+                                    <span class="used-description">20% off on fashion items</span>
+                                    <span class="used-date">Used on March 15, 2024</span>
+                                </div>
+                                <div class="used-savings">Saved ₹400</div>
+                            </div>
+                            <div class="used-coupon-item">
+                                <div class="used-coupon-info">
+                                    <span class="used-code">FLAT100</span>
+                                    <span class="used-description">Flat ₹100 off</span>
+                                    <span class="used-date">Used on March 10, 2024</span>
+                                </div>
+                                <div class="used-savings">Saved ₹100</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="coupon-content" id="expired-content">
+                        <div class="expired-message">
+                            <span class="expired-icon">⏰</span>
+                            <h3>No Expired Coupons</h3>
+                            <p>You haven't let any coupons expire. Great job! 🎉</p>
+                        </div>
+                    </div>
+
+                    <div class="rewards-section">
+                        <h3>🏆 Loyalty Rewards</h3>
+                        <div class="rewards-progress">
+                            <div class="progress-info">
+                                <span>Current Points: 2,450</span>
+                                <span>Next Reward: 550 points to go</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 82%"></div>
+                            </div>
+                        </div>
+                        <div class="rewards-benefits">
+                            <div class="benefit-item">
+                                <span class="benefit-icon">🎁</span>
+                                <span class="benefit-text">Earn 10 points per ₹100 spent</span>
+                            </div>
+                            <div class="benefit-item">
+                                <span class="benefit-icon">💎</span>
+                                <span class="benefit-text">Redeem 1000 points = ₹100 voucher</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications & Alerts Section -->
+                <div id="notifications-section" class="profile-section">
+                    <div class="notifications-header">
+                        <h1>🔔 Notifications & Alerts</h1>
+                        <div class="notification-summary">
+                            <div class="summary-item">
+                                <span class="summary-number">12</span>
+                                <span class="summary-label">Unread</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-number">5</span>
+                                <span class="summary-label">Price Alerts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notification-tabs">
+                        <button class="notification-tab active" onclick="switchNotificationTab('recent')">📬 Recent</button>
+                        <button class="notification-tab" onclick="switchNotificationTab('settings')">⚙️ Settings</button>
+                    </div>
+
+                    <div class="notification-content active" id="recent-content">
+                        <div class="notifications-list">
+                            <div class="notification-item unread">
+                                <div class="notification-icon order">📦</div>
+                                <div class="notification-details">
+                                    <h4>Order Shipped</h4>
+                                    <p>Your order #FH2024003 has been shipped and will arrive tomorrow</p>
+                                    <span class="notification-time">2 hours ago</span>
+                                </div>
+                                <div class="notification-actions">
+                                    <button class="track-btn">🚚 Track</button>
+                                    <button class="mark-read-btn">✅</button>
+                                </div>
+                            </div>
+
+                            <div class="notification-item unread">
+                                <div class="notification-icon price-drop">📉</div>
+                                <div class="notification-details">
+                                    <h4>Price Drop Alert</h4>
+                                    <p>Classic Cotton T-Shirt is now ₹799 (was ₹1,299). Save ₹500!</p>
+                                    <span class="notification-time">5 hours ago</span>
+                                </div>
+                                <div class="notification-actions">
+                                    <button class="buy-now-btn">🛒 Buy Now</button>
+                                    <button class="mark-read-btn">✅</button>
+                                </div>
+                            </div>
+
+                            <div class="notification-item">
+                                <div class="notification-icon offer">🎉</div>
+                                <div class="notification-details">
+                                    <h4>New Offer Available</h4>
+                                    <p>Get 30% off on all fashion items. Use code SAVE30</p>
+                                    <span class="notification-time">1 day ago</span>
+                                </div>
+                                <div class="notification-actions">
+                                    <button class="use-offer-btn">🎫 Use Offer</button>
+                                </div>
+                            </div>
+
+                            <div class="notification-item">
+                                <div class="notification-icon stock">📦</div>
+                                <div class="notification-details">
+                                    <h4>Back in Stock</h4>
+                                    <p>Summer Floral Dress (Size M) is now available</p>
+                                    <span class="notification-time">2 days ago</span>
+                                </div>
+                                <div class="notification-actions">
+                                    <button class="add-cart-btn">🛒 Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notification-content" id="settings-content">
+                        <div class="notification-settings">
+                            <div class="settings-section">
+                                <h3>📱 Push Notifications</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <span class="setting-title">Order Updates</span>
+                                        <span class="setting-desc">Get notified about order status changes</span>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <span class="setting-title">Price Drop Alerts</span>
+                                        <span class="setting-desc">Alert when wishlist items go on sale</span>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <span class="setting-title">Back in Stock</span>
+                                        <span class="setting-desc">Notify when out-of-stock items return</span>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3>📧 Email Notifications</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <span class="setting-title">Promotional Offers</span>
+                                        <span class="setting-desc">Receive deals and discount offers</span>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <span class="setting-title">Weekly Newsletter</span>
+                                        <span class="setting-desc">Fashion trends and new arrivals</span>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3>📱 SMS Notifications</h3>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <span class="setting-title">Delivery Updates</span>
+                                        <span class="setting-desc">SMS alerts for delivery status</span>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <span class="setting-title">OTP & Security</span>
+                                        <span class="setting-desc">Security codes and login alerts</span>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked disabled>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Settings Section -->
+                <div id="settings-section" class="profile-section">
+                    <div class="settings-header">
+                        <h1>🔐 Account Settings</h1>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="settings-card security">
+                            <div class="card-header">
+                                <span class="card-icon">🔒</span>
+                                <h3>Security & Privacy</h3>
+                            </div>
+                            <div class="settings-list">
+                                <div class="setting-row">
+                                    <div class="setting-info">
+                                        <span class="setting-name">Password</span>
+                                        <span class="setting-status">Last changed 30 days ago</span>
+                                    </div>
+                                    <button class="setting-action-btn">🔄 Change</button>
+                                </div>
+                                <div class="setting-row">
+                                    <div class="setting-info">
+                                        <span class="setting-name">Two-Factor Authentication</span>
+                                        <span class="setting-status enabled">✅ Enabled</span>
+                                    </div>
+                                    <button class="setting-action-btn">⚙️ Manage</button>
+                                </div>
+                                <div class="setting-row">
+                                    <div class="setting-info">
+                                        <span class="setting-name">Login Alerts</span>
+                                        <span class="setting-status enabled">✅ Active</span>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-card devices">
+                            <div class="card-header">
+                                <span class="card-icon">📱</span>
+                                <h3>Active Sessions</h3>
+                            </div>
+                            <div class="devices-list">
+                                <div class="device-item current">
+                                    <div class="device-info">
+                                        <span class="device-name">💻 Chrome on Windows</span>
+                                        <span class="device-location">New York, USA</span>
+                                        <span class="device-time">Current session</span>
+                                    </div>
+                                    <span class="current-badge">Current</span>
+                                </div>
+                                <div class="device-item">
+                                    <div class="device-info">
+                                        <span class="device-name">📱 Mobile App</span>
+                                        <span class="device-location">New York, USA</span>
+                                        <span class="device-time">2 hours ago</span>
+                                    </div>
+                                    <button class="logout-device-btn">🚪 Logout</button>
+                                </div>
+                            </div>
+                            <button class="logout-all-btn">🚪 Logout All Devices</button>
+                        </div>
+
+                        <div class="settings-card privacy">
+                            <div class="card-header">
+                                <span class="card-icon">🛡️</span>
+                                <h3>Privacy Controls</h3>
+                            </div>
+                            <div class="privacy-settings">
+                                <div class="privacy-item">
+                                    <div class="privacy-info">
+                                        <span class="privacy-title">Profile Visibility</span>
+                                        <span class="privacy-desc">Control who can see your profile</span>
+                                    </div>
+                                    <select class="privacy-select">
+                                        <option>Private</option>
+                                        <option>Friends Only</option>
+                                        <option>Public</option>
+                                    </select>
+                                </div>
+                                <div class="privacy-item">
+                                    <div class="privacy-info">
+                                        <span class="privacy-title">Data Collection</span>
+                                        <span class="privacy-desc">Allow personalized recommendations</span>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-card danger-zone">
+                            <div class="card-header">
+                                <span class="card-icon">⚠️</span>
+                                <h3>Danger Zone</h3>
+                            </div>
+                            <div class="danger-actions">
+                                <div class="danger-item">
+                                    <div class="danger-info">
+                                        <span class="danger-title">Deactivate Account</span>
+                                        <span class="danger-desc">Temporarily disable your account</span>
+                                    </div>
+                                    <button class="danger-btn secondary">⏸️ Deactivate</button>
+                                </div>
+                                <div class="danger-item">
+                                    <div class="danger-info">
+                                        <span class="danger-title">Delete Account</span>
+                                        <span class="danger-desc">Permanently delete your account and data</span>
+                                    </div>
+                                    <button class="danger-btn primary">🗑️ Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Help & Support Section -->
+                <div id="help-section" class="profile-section">
+                    <div class="help-header">
+                        <h1>🆘 Help & Support</h1>
+                        <div class="support-status">
+                            <span class="status-indicator online">🟢</span>
+                            <span class="status-text">Support Available 24/7</span>
+                        </div>
+                    </div>
+
+                    <div class="help-quick-actions">
+                        <button class="quick-help-btn" onclick="startChat()">💬 Live Chat</button>
+                        <button class="quick-help-btn" onclick="callSupport()">📞 Call Support</button>
+                        <button class="quick-help-btn" onclick="emailSupport()">📧 Email Us</button>
+                    </div>
+
+                    <div class="help-sections">
+                        <div class="help-section-card">
+                            <div class="help-section-header">
+                                <span class="help-icon">❓</span>
+                                <h3>Frequently Asked Questions</h3>
+                            </div>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <div class="faq-question" onclick="toggleFaq(1)">
+                                        <span>How do I track my order?</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer" id="faq-1">
+                                        <p>You can track your order by going to 'My Orders' section and clicking on 'Track Order' button. You'll get real-time updates on your order status.</p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div class="faq-question" onclick="toggleFaq(2)">
+                                        <span>What is your return policy?</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer" id="faq-2">
+                                        <p>We offer a 30-day return policy for all items. Items must be in original condition with tags attached. Free pickup service is available.</p>
+                                    </div>
+                                </div>
+                                <div class="faq-item">
+                                    <div class="faq-question" onclick="toggleFaq(3)">
+                                        <span>How do I apply a coupon code?</span>
+                                        <span class="faq-toggle">+</span>
+                                    </div>
+                                    <div class="faq-answer" id="faq-3">
+                                        <p>During checkout, enter your coupon code in the 'Promo Code' field and click 'Apply'. The discount will be automatically applied to your order.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="view-all-btn">📚 View All FAQs</button>
+                        </div>
+
+                        <div class="help-section-card">
+                            <div class="help-section-header">
+                                <span class="help-icon">📋</span>
+                                <h3>Policies & Guidelines</h3>
+                            </div>
+                            <div class="policies-list">
+                                <a href="#" class="policy-link">
+                                    <span class="policy-icon">🔄</span>
+                                    <span class="policy-name">Return & Refund Policy</span>
+                                    <span class="policy-arrow">→</span>
+                                </a>
+                                <a href="#" class="policy-link">
+                                    <span class="policy-icon">🛡️</span>
+                                    <span class="policy-name">Privacy Policy</span>
+                                    <span class="policy-arrow">→</span>
+                                </a>
+                                <a href="#" class="policy-link">
+                                    <span class="policy-icon">📜</span>
+                                    <span class="policy-name">Terms of Service</span>
+                                    <span class="policy-arrow">→</span>
+                                </a>
+                                <a href="#" class="policy-link">
+                                    <span class="policy-icon">🚚</span>
+                                    <span class="policy-name">Shipping Policy</span>
+                                    <span class="policy-arrow">→</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="help-section-card">
+                            <div class="help-section-header">
+                                <span class="help-icon">🎓</span>
+                                <h3>How-to Guides</h3>
+                            </div>
+                            <div class="guides-grid">
+                                <div class="guide-item">
+                                    <span class="guide-icon">🛒</span>
+                                    <h4>How to Place an Order</h4>
+                                    <p>Step-by-step guide to shopping</p>
+                                </div>
+                                <div class="guide-item">
+                                    <span class="guide-icon">💳</span>
+                                    <h4>Payment Methods</h4>
+                                    <p>All accepted payment options</p>
+                                </div>
+                                <div class="guide-item">
+                                    <span class="guide-icon">📏</span>
+                                    <h4>Size Guide</h4>
+                                    <p>Find your perfect fit</p>
+                                </div>
+                                <div class="guide-item">
+                                    <span class="guide-icon">🎁</span>
+                                    <h4>Gift Cards</h4>
+                                    <p>How to use gift cards</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-section-card contact">
+                            <div class="help-section-header">
+                                <span class="help-icon">📞</span>
+                                <h3>Contact Information</h3>
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span class="contact-icon">📞</span>
+                                    <div class="contact-details">
+                                        <span class="contact-title">Phone Support</span>
+                                        <span class="contact-value">1-800-FASHION (1-800-327-4466)</span>
+                                        <span class="contact-hours">Available 24/7</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon">📧</span>
+                                    <div class="contact-details">
+                                        <span class="contact-title">Email Support</span>
+                                        <span class="contact-value">support@fashionhub.com</span>
+                                        <span class="contact-hours">Response within 2 hours</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon">💬</span>
+                                    <div class="contact-details">
+                                        <span class="contact-title">Live Chat</span>
+                                        <span class="contact-value">Instant messaging support</span>
+                                        <span class="contact-hours">Available 24/7</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Load user profile data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserProfile();
+        });
+        
+        async function loadUserProfile() {
+            const token = localStorage.getItem('authToken');
+            const cachedUser = JSON.parse(localStorage.getItem('user'));
+            
+            if (cachedUser) {
+                updateProfileUI(cachedUser);
+            }
+            
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/users/profile', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const user = await response.json();
+                    localStorage.setItem('user', JSON.stringify(user));
+                    updateProfileUI(user);
+                    loadUserOrders();
+                    loadUserWishlist();
+                    loadUserAddresses();
+                } else {
+                    localStorage.removeItem('authToken');
+                    localStorage.removeItem('user');
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+        
+        function updateProfileUI(user) {
+            document.getElementById('profile-name').textContent = user.name || 'User';
+            document.getElementById('profile-email').textContent = user.email || 'user@email.com';
+            
+            const fullNameEl = document.getElementById('user-full-name');
+            const birthdayEl = document.getElementById('user-birthday');
+            const genderEl = document.getElementById('user-gender');
+            const emailEl = document.getElementById('user-email');
+            const phoneEl = document.getElementById('user-phone');
+            
+            if (fullNameEl) fullNameEl.textContent = user.name || 'Not provided';
+            if (birthdayEl) birthdayEl.textContent = user.birthday || 'Not provided';
+            if (genderEl) genderEl.textContent = user.gender || 'Not provided';
+            if (emailEl) emailEl.textContent = user.email || 'Not provided';
+            if (phoneEl) phoneEl.textContent = user.phone || 'Not provided';
+        }
+        
+        async function updateUserProfile(field, value) {
+            const token = localStorage.getItem('authToken');
+            try {
+                const response = await fetch('http://localhost:5000/api/users/profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ [field]: value })
+                });
+                
+                if (response.ok) {
+                    const updatedUser = await response.json();
+                    localStorage.setItem('user', JSON.stringify(updatedUser));
+                    updateProfileUI(updatedUser);
+                    return true;
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+            }
+            return false;
+        }
+        
+        async function loadUserOrders() {
+            const token = localStorage.getItem('authToken');
+            try {
+                const response = await fetch('http://localhost:5000/api/orders', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const orders = await response.json();
+                    displayOrders(orders);
+                }
+            } catch (error) {
+                console.error('Error loading orders:', error);
+            }
+        }
+        
+        async function loadUserWishlist() {
+            const token = localStorage.getItem('authToken');
+            try {
+                const response = await fetch('http://localhost:5000/api/users/wishlist', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const wishlist = await response.json();
+                    displayWishlist(wishlist);
+                }
+            } catch (error) {
+                console.error('Error loading wishlist:', error);
+            }
+        }
+        
+        async function loadUserAddresses() {
+            const token = localStorage.getItem('authToken');
+            try {
+                const response = await fetch('http://localhost:5000/api/users/addresses', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const addresses = await response.json();
+                    displayAddresses(addresses);
+                }
+            } catch (error) {
+                console.error('Error loading addresses:', error);
+            }
+        }
+        
+        function displayOrders(orders) {
+            // Update orders section with real data
+            console.log('Orders loaded:', orders);
+        }
+        
+        function displayWishlist(wishlist) {
+            // Update wishlist section with real data
+            console.log('Wishlist loaded:', wishlist);
+        }
+        
+        function displayAddresses(addresses) {
+            // Update addresses section with real data
+            console.log('Addresses loaded:', addresses);
+        }
+        
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.profile-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav items
+            document.querySelectorAll('.profile-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.add('active');
+            
+            // Add active class to clicked nav item
+            const clickedItem = event.target.closest('.profile-nav-item');
+            if (clickedItem) {
+                clickedItem.classList.add('active');
+            }
+        }
+        
+        function handleLogout() {
+            // Clear any stored user data
+            localStorage.removeItem('user');
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userSession');
+            localStorage.removeItem('userPreferences');
+            
+            // Show logout confirmation
+            if (confirm('Are you sure you want to log out?')) {
+                // Redirect to home page
+                window.location.href = 'index.html';
+            } else {
+                // Prevent default link behavior
+                event.preventDefault();
+                return false;
+            }
+        }
+        
+        // Profile interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Edit button functionality with database updates
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const infoItem = this.closest('.info-item');
+                    const valueSpan = infoItem.querySelector('.value');
+                    const label = infoItem.querySelector('label').textContent.toLowerCase();
+                    
+                    if (!valueSpan.classList.contains('add-new')) {
+                        const currentValue = valueSpan.textContent;
+                        const input = document.createElement('input');
+                        input.value = currentValue === 'Not provided' ? '' : currentValue;
+                        input.className = 'inline-edit';
+                        
+                        valueSpan.style.display = 'none';
+                        valueSpan.parentNode.insertBefore(input, valueSpan);
+                        input.focus();
+                        
+                        const saveEdit = async () => {
+                            const newValue = input.value.trim();
+                            if (newValue && newValue !== currentValue) {
+                                let field = '';
+                                if (label.includes('name')) field = 'name';
+                                else if (label.includes('birthday')) field = 'birthday';
+                                else if (label.includes('gender')) field = 'gender';
+                                else if (label.includes('phone')) field = 'phone';
+                                
+                                if (field) {
+                                    const success = await updateUserProfile(field, newValue);
+                                    if (success) {
+                                        valueSpan.textContent = newValue;
+                                    } else {
+                                        alert('Failed to update profile');
+                                    }
+                                }
+                            }
+                            valueSpan.style.display = 'inline';
+                            input.remove();
+                        };
+                        
+                        input.addEventListener('blur', saveEdit);
+                        input.addEventListener('keypress', (e) => {
+                            if (e.key === 'Enter') saveEdit();
+                        });
+                    }
+                });
+            });
+            
+            // Avatar edit
+            document.querySelector('.avatar-edit').addEventListener('click', function() {
+                alert('Photo upload feature coming soon! 📸');
+            });
+            
+            // Toggle buttons
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const valueSpan = this.parentNode.querySelector('.value');
+                    if (this.classList.contains('active')) {
+                        valueSpan.textContent = 'Enabled';
+                        valueSpan.className = 'value enabled';
+                    } else {
+                        valueSpan.textContent = 'Disabled';
+                        valueSpan.className = 'value disabled';
+                    }
+                });
+            });
+        });
+        
+        // Orders functionality
+        function filterOrders(status) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const orderCards = document.querySelectorAll('.order-card');
+            
+            // Update active filter button
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Show/hide orders based on status
+            orderCards.forEach(card => {
+                if (status === 'all' || card.dataset.status === status) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.3s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        function copyTracking(trackingId) {
+            navigator.clipboard.writeText(trackingId).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+        
+        // Returns functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        // Wishlist functionality
+        function filterWishlist(category) {
+            const filterBtns = document.querySelectorAll('.wishlist-filters .filter-btn');
+            const wishlistCards = document.querySelectorAll('.wishlist-card');
+            
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            wishlistCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        function removeFromWishlist(id) {
+            if (confirm('Remove this item from wishlist?')) {
+                // Remove item logic here
+                alert('Item removed from wishlist!');
+            }
+        }
+        
+        // Address functionality
+        function showAddressForm() {
+            document.getElementById('address-form').style.display = 'block';
+        }
+        
+        function hideAddressForm() {
+            document.getElementById('address-form').style.display = 'none';
+        }
+        
+        function editAddress(id) {
+            alert('Edit address functionality would open here');
+        }
+        
+        function deleteAddress(id) {
+            if (confirm('Delete this address?')) {
+                alert('Address deleted!');
+            }
+        }
+        
+        // Payment functionality
+        function switchPaymentTab(tabName) {
+            document.querySelectorAll('.payment-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.payment-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function showCardForm() {
+            alert('Add new card form would open here');
+        }
+        
+        function showUpiForm() {
+            alert('Add UPI ID form would open here');
+        }
+        
+        // Coupons functionality
+        function switchCouponTab(tabName) {
+            document.querySelectorAll('.coupon-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.coupon-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function copyCouponCode(code) {
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+        
+        // Notifications functionality
+        function switchNotificationTab(tabName) {
+            document.querySelectorAll('.notification-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.notification-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // Help functionality
+        function toggleFaq(id) {
+            const answer = document.getElementById('faq-' + id);
+            const toggle = event.target.querySelector('.faq-toggle');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                toggle.textContent = '+';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-toggle').forEach(tog => {
+                    tog.textContent = '+';
+                });
+                
+                answer.classList.add('active');
+                toggle.textContent = '-';
+            }
+        }
+        
+        function startChat() {
+            alert('Live chat would open here');
+        }
+        
+        function callSupport() {
+            alert('Calling support: 1-800-FASHION');
+        }
+        
+        function emailSupport() {
+            window.location.href = 'mailto:support@fashionhub.com';
+        }
+        
+        // Add fade in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

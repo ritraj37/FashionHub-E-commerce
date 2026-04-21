@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Bag - FashionHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">FashionHub</a>
+            </div>
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products, brands and more..." id="search-input">
+                    <button class="search-btn" type="button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19S2 15.194 2 10.5 5.806 2 10.5 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-icons">
+                <a href="index.html" class="offers-link">
+                    <span class="offers-text">← Continue Shopping</span>
+                </a>
+                <div class="dropdown profile-dropdown">
+                    <button class="dropdown-btn profile-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Profile</span>
+                    </button>
+                    <div class="dropdown-menu profile-menu">
+                        <a href="profile.html#personal-info" class="dropdown-item">My Profile</a>
+                        <a href="profile.html#orders" class="dropdown-item">My Orders</a>
+                        <a href="profile.html#wishlist" class="dropdown-item">Wishlist</a>
+                        <a href="profile.html#coupons" class="dropdown-item">Rewards</a>
+                        <a href="profile.html#payments" class="dropdown-item">Wallet</a>
+                        <a href="profile.html#address-book" class="dropdown-item">Addresses</a>
+                        <a href="profile.html#notifications" class="dropdown-item">Notifications</a>
+                        <a href="profile.html#help-support" class="dropdown-item">Help Center</a>
+                        <hr class="dropdown-divider">
+                        <a href="index.html" class="dropdown-item">Logout</a>
+                    </div>
+                </div>
+                <button class="icon-btn wishlist-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.9987 7.05 2.9987C5.59096 2.9987 4.19169 3.5783 3.16 4.61C2.1283 5.6417 1.5487 7.04097 1.5487 8.5C1.5487 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="wishlist-count">0</span>
+                </button>
+                <button class="icon-btn cart-btn active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V17C17 18.1 16.1 19 15 19H9C7.9 19 7 18.1 7 17V13M9 19C7.9 19 7 19.9 7 21S7.9 23 9 23 11 22.1 11 21 10.1 19 9 19ZM20 19C18.9 19 18 19.9 18 21S18.9 23 20 23 22 22.1 22 21 21.1 19 20 19Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="cart-page">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h1>🛍️ Shopping Bag</h1>
+                <p class="cart-subtitle">Review your items before checkout</p>
+            </div>
+
+            <div class="cart-content">
+                <div class="cart-items-section">
+                    <div class="cart-items-header">
+                        <h2>Items in your bag (<span id="total-items">0</span>)</h2>
+                        <button class="clear-cart-btn" onclick="clearCart()">Clear All</button>
+                    </div>
+
+                    <div class="cart-items" id="cart-items">
+                        <div class="cart-item" data-id="1">
+                            <div class="item-image">👕</div>
+                            <div class="item-details">
+                                <h3>Cotton T-Shirt</h3>
+                                <p class="item-brand">StyleCo</p>
+                                <div class="item-specs">
+                                    <span class="size">Size: M</span>
+                                    <span class="color">Color: Blue</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="move-to-wishlist" onclick="moveToWishlist(1)">💝 Move to Wishlist</button>
+                                    <button class="remove-item" onclick="removeItem(1)">🗑️ Remove</button>
+                                </div>
+                            </div>
+                            <div class="item-quantity">
+                                <div class="quantity-controls">
+                                    <button onclick="updateQuantity(1, -1)">-</button>
+                                    <span class="quantity">2</span>
+                                    <button onclick="updateQuantity(1, 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="item-price">
+                                <div class="current-price">₹1,598</div>
+                                <div class="original-price">₹2,598</div>
+                                <div class="savings">You save ₹1,000</div>
+                            </div>
+                        </div>
+
+                        <div class="cart-item" data-id="2">
+                            <div class="item-image">👖</div>
+                            <div class="item-details">
+                                <h3>Denim Jeans</h3>
+                                <p class="item-brand">DenimCo</p>
+                                <div class="item-specs">
+                                    <span class="size">Size: 32</span>
+                                    <span class="color">Color: Dark Blue</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="move-to-wishlist" onclick="moveToWishlist(2)">💝 Move to Wishlist</button>
+                                    <button class="remove-item" onclick="removeItem(2)">🗑️ Remove</button>
+                                </div>
+                            </div>
+                            <div class="item-quantity">
+                                <div class="quantity-controls">
+                                    <button onclick="updateQuantity(2, -1)">-</button>
+                                    <span class="quantity">1</span>
+                                    <button onclick="updateQuantity(2, 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="item-price">
+                                <div class="current-price">₹2,499</div>
+                                <div class="original-price">₹3,999</div>
+                                <div class="savings">You save ₹1,500</div>
+                            </div>
+                        </div>
+
+                        <div class="cart-item" data-id="3">
+                            <div class="item-image">👟</div>
+                            <div class="item-details">
+                                <h3>Sports Sneakers</h3>
+                                <p class="item-brand">SportMax</p>
+                                <div class="item-specs">
+                                    <span class="size">Size: 9</span>
+                                    <span class="color">Color: White</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="move-to-wishlist" onclick="moveToWishlist(3)">💝 Move to Wishlist</button>
+                                    <button class="remove-item" onclick="removeItem(3)">🗑️ Remove</button>
+                                </div>
+                            </div>
+                            <div class="item-quantity">
+                                <div class="quantity-controls">
+                                    <button onclick="updateQuantity(3, -1)">-</button>
+                                    <span class="quantity">1</span>
+                                    <button onclick="updateQuantity(3, 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="item-price">
+                                <div class="current-price">₹3,999</div>
+                                <div class="original-price">₹5,999</div>
+                                <div class="savings">You save ₹2,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="delivery-options">
+                        <h3>🚚 Delivery Options</h3>
+                        <div class="delivery-methods">
+                            <label class="delivery-option">
+                                <input type="radio" name="delivery" value="standard" checked>
+                                <div class="option-content">
+                                    <span class="option-title">Standard Delivery</span>
+                                    <span class="option-time">5-7 business days</span>
+                                    <span class="option-price">FREE</span>
+                                </div>
+                            </label>
+                            <label class="delivery-option">
+                                <input type="radio" name="delivery" value="express">
+                                <div class="option-content">
+                                    <span class="option-title">Express Delivery</span>
+                                    <span class="option-time">2-3 business days</span>
+                                    <span class="option-price">₹99</span>
+                                </div>
+                            </label>
+                            <label class="delivery-option">
+                                <input type="radio" name="delivery" value="same-day">
+                                <div class="option-content">
+                                    <span class="option-title">Same Day Delivery</span>
+                                    <span class="option-time">Within 24 hours</span>
+                                    <span class="option-price">₹199</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-card">
+                        <h3>💰 Order Summary</h3>
+                        
+                        <div class="summary-row">
+                            <span>Subtotal (4 items)</span>
+                            <span>₹8,096</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Discount</span>
+                            <span class="discount-amount">-₹4,500</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Delivery Charges</span>
+                            <span class="delivery-charges">FREE</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Platform Fee</span>
+                            <span>₹20</span>
+                        </div>
+                        <hr>
+                        <div class="summary-row total">
+                            <span>Total Amount</span>
+                            <span>₹8,116</span>
+                        </div>
+                        <div class="total-savings">
+                            <span>🎉 You will save ₹4,500 on this order</span>
+                        </div>
+
+                        <div class="promo-section">
+                            <h4>🎫 Apply Coupon</h4>
+                            <div class="promo-input">
+                                <input type="text" placeholder="Enter coupon code" id="coupon-input">
+                                <button onclick="applyCoupon()">Apply</button>
+                            </div>
+                            <div class="available-coupons">
+                                <button class="coupon-chip" onclick="applyCouponCode('SAVE20')">SAVE20 - ₹200 OFF</button>
+                                <button class="coupon-chip" onclick="applyCouponCode('FIRST50')">FIRST50 - ₹500 OFF</button>
+                            </div>
+                        </div>
+
+                        <button class="checkout-btn" onclick="proceedToCheckout()">
+                            🛒 Proceed to Checkout
+                        </button>
+
+                        <div class="payment-options">
+                            <h4>💳 We Accept</h4>
+                            <div class="payment-methods">
+                                <span class="payment-method">💳 Cards</span>
+                                <span class="payment-method">📱 UPI</span>
+                                <span class="payment-method">💰 Wallets</span>
+                                <span class="payment-method">🏦 Net Banking</span>
+                                <span class="payment-method">💵 COD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="benefits-card">
+                        <h4>✨ Shopping Benefits</h4>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🔒</span>
+                            <span>100% Secure Payments</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🔄</span>
+                            <span>Easy 30-day Returns</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🚚</span>
+                            <span>Free Delivery on ₹999+</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">⭐</span>
+                            <span>Quality Guaranteed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="empty-cart" id="empty-cart" style="display: none;">
+                <div class="empty-cart-content">
+                    <div class="empty-cart-icon">🛍️</div>
+                    <h2>Your bag is empty</h2>
+                    <p>Looks like you haven't added anything to your bag yet.</p>
+                    <a href="index.html" class="continue-shopping-btn">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommended-section">
+            <h2>🌟 You might also like</h2>
+            <div class="recommended-products">
+                <div class="recommended-item">
+                    <div class="product-image">👔</div>
+                    <h4>Formal Shirt</h4>
+                    <p class="price">₹1,299 <span class="original">₹1,999</span></p>
+                    <button class="add-to-bag-btn" onclick="addRecommended(1)">Add to Bag</button>
+                </div>
+                <div class="recommended-item">
+                    <div class="product-image">🧥</div>
+                    <h4>Winter Jacket</h4>
+                    <p class="price">₹2,499 <span class="original">₹3,999</span></p>
+                    <button class="add-to-bag-btn" onclick="addRecommended(2)">Add to Bag</button>
+                </div>
+                <div class="recommended-item">
+                    <div class="product-image">👜</div>
+                    <h4>Leather Bag</h4>
+                    <p class="price">₹1,799 <span class="original">₹2,999</span></p>
+                    <button class="add-to-bag-btn" onclick="addRecommended(3)">Add to Bag</button>
+                </div>
+                <div class="recommended-item">
+                    <div class="product-image">⌚</div>
+                    <h4>Smart Watch</h4>
+                    <p class="price">₹4,999 <span class="original">₹7,999</span></p>
+                    <button class="add-to-bag-btn" onclick="addRecommended(4)">Add to Bag</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/cart.js"></script>
+    <script>
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCountGlobal();
+        });
+    </script>
+</body>
+</html>

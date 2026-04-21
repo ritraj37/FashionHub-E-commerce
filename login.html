@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FashionHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">FashionHub</a>
+            </div>
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for products, brands and more..." id="search-input">
+                    <button class="search-btn" type="button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19S2 15.194 2 10.5 5.806 2 10.5 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-icons">
+                <a href="#" class="offers-link">
+                    <span class="offers-text">Offers</span>
+                </a>
+                <div class="dropdown profile-dropdown">
+                    <button class="dropdown-btn profile-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Profile</span>
+                    </button>
+                    <div class="dropdown-menu profile-menu">
+                        <a href="profile.html#personal-info" class="dropdown-item">My Profile</a>
+                        <a href="profile.html#orders" class="dropdown-item">My Orders</a>
+                        <a href="profile.html#wishlist" class="dropdown-item">Wishlist</a>
+                        <a href="profile.html#coupons" class="dropdown-item">Rewards</a>
+                        <a href="profile.html#payments" class="dropdown-item">Wallet</a>
+                        <a href="profile.html#address-book" class="dropdown-item">Addresses</a>
+                        <a href="profile.html#notifications" class="dropdown-item">Notifications</a>
+                        <a href="profile.html#help-support" class="dropdown-item">Help Center</a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item" onclick="event.preventDefault(); FashionAPI.logout();">Logout</a>
+                    </div>
+                </div>
+                <button class="icon-btn wishlist-btn" onclick="toggleWishlist()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.9987 7.05 2.9987C5.59096 2.9987 4.19169 3.5783 3.16 4.61C2.1283 5.6417 1.5487 7.04097 1.5487 8.5C1.5487 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <!-- <span class="icon-text"></span> -->
+                    <span class="wishlist-count" id="wishlist-count">0</span>
+                </button>
+                <a href="cart.html" class="icon-btn cart-btn">
+                    <div class="cart-icon-wrapper">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V17C17 18.1 16.1 19 15 19H9C7.9 19 7 18.1 7 17V13M9 19C7.9 19 7 19.9 7 21S7.9 23 9 23 11 22.1 11 21 10.1 19 9 19ZM20 19C18.9 19 18 19.9 18 21S18.9 23 20 23 22 22.1 22 21 21.1 19 20 19Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        
+                    </div>
+                    <!-- <span class="icon-text">Bag</span> -->
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+                <button class="mobile-menu-btn">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </nav>
+        <nav class="category-nav">
+            <div class="category-container">
+                <div class="dropdown category-dropdown">
+                    <button class="dropdown-btn category-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 12L21 12M3 6L21 6M3 18L21 18" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Categories
+                    </button>
+                    <div class="dropdown-menu category-menu">
+                        <a href="men.html" class="dropdown-item">Men</a>
+                        <a href="women.html" class="dropdown-item">Women</a>
+                        <a href="kids.html" class="dropdown-item">Kids</a>
+                        <a href="home.html" class="dropdown-item">Home & Living</a>
+                        <a href="beauty.html" class="dropdown-item">Beauty</a>
+                        <a href="electronics.html" class="dropdown-item">Electronics</a>
+                    </div>
+                </div>
+                <div class="quick-categories">
+                    <a href="index.html" class="category-link active">All</a>
+                    <a href="men.html" class="category-link">Men</a>
+                    <a href="women.html" class="category-link">Women</a>
+                    <a href="kids.html" class="category-link">Kids</a>
+                    <a href="home.html" class="category-link">Home</a>
+                    <a href="beauty.html" class="category-link">Beauty</a>
+                    <a href="electronics.html" class="category-link">Electronics</a>
+                </div>
+            </div>
+        </nav>
+        <div class="mobile-menu-overlay">
+            <div class="mobile-menu">
+                <div class="mobile-menu-header">
+                    <h3>Menu</h3>
+                    <button class="mobile-menu-close">&times;</button>
+                </div>
+                <div class="mobile-menu-content">
+                    <a href="men.html" class="mobile-menu-item">Men</a>
+                    <a href="women.html" class="mobile-menu-item">Women</a>
+                    <a href="kids.html" class="mobile-menu-item">Kids</a>
+                    <a href="home.html" class="mobile-menu-item">Home & Living</a>
+                    <a href="beauty.html" class="mobile-menu-item">Beauty</a>
+                    <a href="electronics.html" class="mobile-menu-item">Electronics</a>
+                    <hr>
+                    <a href="#" class="mobile-menu-item">Offers</a>
+                    <a href="#" class="mobile-menu-item">My Account</a>
+                    <a href="#" class="mobile-menu-item">Orders</a>
+                    <a href="#" class="mobile-menu-item">Wishlist</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h2 id="auth-title">Welcome Back! 👋</h2>
+                    <p id="auth-subtitle">Login to access your account</p>
+                </div>
+                
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="auth-btn">Login</button>
+                </form>
+                
+                <form id="register-form" class="auth-form hidden">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" placeholder="Confirm your password" required>
+                    </div>
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" required> I agree to Terms & Conditions
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-btn">Create Account</button>
+                </form>
+                
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+                
+                <div class="social-login">
+                    <button class="social-btn google">
+                        <svg width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        Continue with Google
+                    </button>
+                </div>
+                
+                <p class="auth-switch">
+                    <span id="switch-text">Don't have an account?</span>
+                    <a href="#" id="switch-link" onclick="toggleAuthMode(event)">Register</a>
+                </p>
+            </div>
+            
+            <div class="auth-benefits">
+                <div class="benefits-header">
+                    <h3>Trusted by 10,000+ Customers</h3>
+                    <p>Experience premium fashion shopping</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🚚</span>
+                    <div>
+                        <h4>Free Shipping</h4>
+                        <p>On orders above ₹999</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🔄</span>
+                    <div>
+                        <h4>Easy Returns</h4>
+                        <p>30-day return policy</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🔒</span>
+                    <div>
+                        <h4>Secure Payments</h4>
+                        <p>100% secure transactions</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">⭐</span>
+                    <div>
+                        <h4>Quality Assured</h4>
+                        <p>Verified brands only</p>
+                    </div>
+                </div>
+                <div class="trust-badges">
+                    <span class="badge">500+ Brands</span>
+                    <span class="badge">24/7 Support</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleCart()">&times;</span>
+            <h2>Shopping Bag</h2>
+            <div id="cart-items"></div>
+            <div class="cart-summary">
+                <div class="cart-total">Total: ₹<span id="cart-total">0</span></div>
+                <button class="checkout-btn" onclick="window.location.href='cart.html'">View Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="wishlist-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleWishlist()">&times;</span>
+            <h2>My Wishlist</h2>
+            <div id="wishlist-items"></div>
+            <div class="wishlist-summary">
+                <p id="wishlist-empty-message" style="display: none; text-align: center; color: #666; padding: 2rem;">Your wishlist is empty</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        let isLogin = true;
+        
+        function toggleAuthMode(e) {
+            if (e) e.preventDefault();
+            isLogin = !isLogin;
+            const title = document.getElementById('auth-title');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const switchText = document.getElementById('switch-text');
+            const switchLink = document.getElementById('switch-link');
+            
+            if (isLogin) {
+                title.textContent = 'Welcome Back! 👋';
+                document.getElementById('auth-subtitle').textContent = 'Login to access your account';
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                switchText.textContent = "Don't have an account?";
+                switchLink.textContent = 'Register';
+            } else {
+                title.textContent = 'Create Account 🎉';
+                document.getElementById('auth-subtitle').textContent = 'Join FashionHub today';
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                switchText.textContent = 'Already have an account?';
+                switchLink.textContent = 'Login';
+            }
+        }
+        
+        // Login Handler
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            const password = this.querySelector('input[type="password"]').value;
+            
+            try {
+                // For demo purposes, create a mock user if backend is not available
+                let response;
+                try {
+                    response = await FashionAPI.login({ email, password });
+                } catch (error) {
+                    // Mock login for demo
+                    response = {
+                        token: 'demo-token-' + Date.now(),
+                        user: {
+                            name: email.split('@')[0].replace(/[^a-zA-Z]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                            email: email,
+                            id: Date.now()
+                        }
+                    };
+                }
+                
+                if (response.token) {
+                    // Store user data in localStorage
+                    localStorage.setItem('authToken', response.token);
+                    localStorage.setItem('user', JSON.stringify(response.user));
+                    
+                    alert('✅ Login successful! Welcome ' + response.user.name);
+                    window.location.href = 'index.html';
+                } else {
+                    alert('❌ ' + (response.message || 'Login failed'));
+                }
+            } catch (error) {
+                alert('❌ Login error: ' + error.message);
+            }
+        });
+        
+        // Register Handler
+        document.getElementById('register-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const password = this.querySelectorAll('input[type="password"]')[0].value;
+            const confirmPassword = this.querySelectorAll('input[type="password"]')[1].value;
+            
+            if (password !== confirmPassword) {
+                alert('❌ Passwords do not match!');
+                return;
+            }
+            
+            try {
+                // For demo purposes, create a mock user if backend is not available
+                let response;
+                try {
+                    response = await FashionAPI.register({ name, email, password });
+                } catch (error) {
+                    // Mock registration for demo
+                    response = {
+                        token: 'demo-token-' + Date.now(),
+                        user: {
+                            name: name,
+                            email: email,
+                            id: Date.now()
+                        }
+                    };
+                }
+                
+                if (response.token) {
+                    // Store user data in localStorage
+                    localStorage.setItem('authToken', response.token);
+                    localStorage.setItem('user', JSON.stringify(response.user));
+                    
+                    alert('✅ Registration successful! Welcome ' + response.user.name);
+                    window.location.href = 'index.html';
+                } else {
+                    alert('❌ ' + (response.message || 'Registration failed'));
+                }
+            } catch (error) {
+                alert('❌ Registration error: ' + error.message);
+            }
+        });
+    </script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Initialize cart and wishlist count on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCountGlobal();
+            // Update wishlist count
+            const wishlist = JSON.parse(localStorage.getItem('fashionWishlist')) || [];
+            const wishlistCountEl = document.getElementById('wishlist-count');
+            if (wishlistCountEl) {
+                wishlistCountEl.textContent = wishlist.length;
+            }
+        });
+    </script>
+</body>
+</html>

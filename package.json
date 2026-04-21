@@ -1,0 +1,33 @@
+{
+  "name": "fashionhub-ecommerce",
+  "version": "1.0.0",
+  "description": "A modern, responsive e-commerce website for fashion products",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000",
+    "build": "echo 'Build process for production'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "ecommerce",
+    "fashion",
+    "shopping",
+    "responsive",
+    "javascript",
+    "html",
+    "css"
+  ],
+  "author": "FashionHub Team",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fashionhub/ecommerce-website"
+  },
+  "bugs": {
+    "url": "https://github.com/fashionhub/ecommerce-website/issues"
+  },
+  "homepage": "https://fashionhub.github.io/ecommerce-website"
+}

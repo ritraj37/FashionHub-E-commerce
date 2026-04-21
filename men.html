@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Fashion - FashionHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">FashionHub</a>
+            </div>
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search men's fashion..." id="search-input">
+                    <button class="search-btn" type="button" onclick="searchProducts()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19S2 15.194 2 10.5 5.806 2 10.5 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-icons">
+                <a href="index.html" class="offers-link">
+                    <span class="offers-text">Home</span>
+                </a>
+                <div class="dropdown profile-dropdown">
+                    <button class="dropdown-btn profile-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Profile</span>
+                    </button>
+                    <div class="dropdown-menu profile-menu">
+                        <a href="profile.html#personal-info" class="dropdown-item">My Profile</a>
+                        <a href="profile.html#orders" class="dropdown-item">My Orders</a>
+                        <a href="profile.html#wishlist" class="dropdown-item">Wishlist</a>
+                        <a href="profile.html#coupons" class="dropdown-item">Rewards</a>
+                        <a href="profile.html#payments" class="dropdown-item">Wallet</a>
+                        <a href="profile.html#address-book" class="dropdown-item">Addresses</a>
+                        <a href="profile.html#notifications" class="dropdown-item">Notifications</a>
+                        <a href="profile.html#help-support" class="dropdown-item">Help Center</a>
+                        <hr class="dropdown-divider">
+                        <a href="index.html" class="dropdown-item" onclick="handleLogout()">Logout</a>
+                    </div>
+                </div>
+                <button class="icon-btn wishlist-btn" onclick="toggleWishlist()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.9987 7.05 2.9987C5.59096 2.9987 4.19169 3.5783 3.16 4.61C2.1283 5.6417 1.5487 7.04097 1.5487 8.5C1.5487 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="wishlist-count" id="wishlist-count">0</span>
+                </button>
+                <a href="cart.html" class="icon-btn cart-btn">
+                    <div class="cart-icon-wrapper">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V17C17 18.1 16.1 19 15 19H9C7.9 19 7 18.1 7 17V13M9 19C7.9 19 7 19.9 7 21S7.9 23 9 23 11 22.1 11 21 10.1 19 9 19ZM20 19C18.9 19 18 19.9 18 21S18.9 23 20 23 22 22.1 22 21 21.1 19 20 19Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        
+                    </div>
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+                <button class="mobile-menu-btn">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </nav>
+        <nav class="category-nav">
+            <div class="category-container">
+                <div class="dropdown category-dropdown">
+                    <button class="dropdown-btn category-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 12L21 12M3 6L21 6M3 18L21 18" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Categories
+                    </button>
+                    <div class="dropdown-menu category-menu">
+                        <a href="men.html" class="dropdown-item">Men</a>
+                        <a href="women.html" class="dropdown-item">Women</a>
+                        <a href="kids.html" class="dropdown-item">Kids</a>
+                        <a href="home.html" class="dropdown-item">Home & Living</a>
+                        <a href="beauty.html" class="dropdown-item">Beauty</a>
+                        <a href="electronics.html" class="dropdown-item">Electronics</a>
+                    </div>
+                </div>
+                <div class="quick-categories">
+                    <a href="#" class="category-link active" onclick="filterMensCategory('all')">All Men's</a>
+                    <a href="#" class="category-link" onclick="filterMensCategory('shirts')">Shirts</a>
+                    <a href="#" class="category-link" onclick="filterMensCategory('pants')">Pants</a>
+                    <a href="#" class="category-link" onclick="filterMensCategory('shoes')">Shoes</a>
+                    <a href="#" class="category-link" onclick="filterMensCategory('formal')">Formal</a>
+                    <a href="#" class="category-link" onclick="filterMensCategory('casual')">Casual</a>
+                </div>
+            </div>
+        </nav>
+        <div class="mobile-menu-overlay">
+            <div class="mobile-menu">
+                <div class="mobile-menu-header">
+                    <h3>Men's Menu</h3>
+                    <button class="mobile-menu-close">&times;</button>
+                </div>
+                <div class="mobile-menu-content">
+                    <a href="#" class="mobile-menu-item" onclick="filterMensCategory('shirts')">Shirts</a>
+                    <a href="#" class="mobile-menu-item" onclick="filterMensCategory('pants')">Pants</a>
+                    <a href="#" class="mobile-menu-item" onclick="filterMensCategory('shoes')">Shoes</a>
+                    <a href="#" class="mobile-menu-item" onclick="filterMensCategory('accessories')">Accessories</a>
+                    <a href="#" class="mobile-menu-item" onclick="filterMensCategory('formal')">Formal Wear</a>
+                    <a href="#" class="mobile-menu-item" onclick="filterMensCategory('casual')">Casual Wear</a>
+                    <hr>
+                    <a href="index.html" class="mobile-menu-item">Home</a>
+                    <a href="#" class="mobile-menu-item">My Account</a>
+                    <a href="#" class="mobile-menu-item">Wishlist</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-banner">
+            <div class="hero-slider">
+                <div class="slide active" data-bg="gradient1">
+                    <div class="banner-content">
+                        <div class="content-left">
+                            <span class="badge">Men's Collection</span>
+                            <h1>Style That <span class="highlight">Defines You</span></h1>
+                            <p>Discover premium men's fashion with the latest trends in shirts, pants, shoes and accessories</p>
+                            <div class="cta-buttons">
+                                <button class="shop-btn primary" onclick="scrollToProducts()">Shop Men's</button>
+                                <button class="shop-btn secondary" onclick="filterMensCategory('formal')">Formal Collection</button>
+                            </div>
+                            <div class="stats">
+                                <div class="stat">
+                                    <span class="number">5K+</span>
+                                    <span class="label">Men's Products</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">200+</span>
+                                    <span class="label">Brands</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-right">
+                            <div class="hero-image">
+                                <div class="floating-card card1">
+                                    <span class="emoji">👔</span>
+                                    <span class="text">Formal</span>
+                                </div>
+                                <div class="floating-card card2">
+                                    <span class="emoji">👕</span>
+                                    <span class="text">Casual</span>
+                                </div>
+                                <div class="floating-card card3">
+                                    <span class="emoji">👟</span>
+                                    <span class="text">Shoes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slide" data-bg="gradient2">
+                    <div class="banner-content">
+                        <div class="content-left">
+                            <span class="badge">Limited Time</span>
+                            <h1>Men's <span class="highlight">Sale</span> 2024</h1>
+                            <p>Get up to 60% off on premium men's fashion. Limited time offer!</p>
+                            <div class="cta-buttons">
+                                <button class="shop-btn primary" onclick="filterMensCategory('shirts')">Shop Shirts</button>
+                                <button class="shop-btn secondary" onclick="filterMensCategory('shoes')">Shop Shoes</button>
+                            </div>
+                            <div class="offer-timer">
+                                <span class="timer-label">Offer ends in:</span>
+                                <div class="timer" id="countdown">
+                                    <span class="time-unit"><span id="days">05</span><small>Days</small></span>
+                                    <span class="time-unit"><span id="hours">12</span><small>Hours</small></span>
+                                    <span class="time-unit"><span id="minutes">30</span><small>Min</small></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-right">
+                            <div class="hero-image">
+                                <div class="discount-badge">60% OFF</div>
+                                <div class="floating-card card1">
+                                    <span class="emoji">👖</span>
+                                    <span class="text">Pants</span>
+                                </div>
+                                <div class="floating-card card2">
+                                    <span class="emoji">🧥</span>
+                                    <span class="text">Jackets</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slider-controls">
+                <button class="slider-btn prev" onclick="changeSlide(-1)">‹</button>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+                <button class="slider-btn next" onclick="changeSlide(1)">›</button>
+            </div>
+        </section>
+
+        <section class="categories-section">
+            <h2>Shop Men's Categories</h2>
+            <div class="category-cards">
+                <div class="category-card" onclick="filterMensCategory('shirts')">
+                    <div class="category-image">👔</div>
+                    <h3>Shirts & Formal</h3>
+                </div>
+                <div class="category-card" onclick="filterMensCategory('pants')">
+                    <div class="category-image">👖</div>
+                    <h3>Pants & Jeans</h3>
+                </div>
+                <div class="category-card" onclick="filterMensCategory('shoes')">
+                    <div class="category-image">👟</div>
+                    <h3>Shoes & Sneakers</h3>
+                </div>
+                <div class="category-card" onclick="filterMensCategory('casual')">
+                    <div class="category-image">👕</div>
+                    <h3>Casual Wear</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="products-section">
+            <div class="section-header">
+                <h2>Men's Fashion Collection</h2>
+                <div class="filter-options">
+                    <select id="sort-select" onchange="sortProducts()">
+                        <option value="default">Sort by</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name A-Z</option>
+                        <option value="rating">Rating</option>
+                    </select>
+                </div>
+            </div>
+            <div class="products-grid" id="products-grid"></div>
+        </section>
+        
+        <section class="newsletter-section">
+            <div class="newsletter-container">
+                <h2>Stay Updated with Men's Fashion</h2>
+                <p>Subscribe to get exclusive men's fashion deals, style tips, and new arrivals</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" id="newsletter-email">
+                    <button onclick="subscribeNewsletter()">Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleCart()">&times;</span>
+            <h2>Shopping Bag</h2>
+            <div id="cart-items"></div>
+            <div class="cart-summary">
+                <div class="cart-total">Total: ₹<span id="cart-total">0</span></div>
+                <button class="checkout-btn" onclick="goToCheckout()">Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="wishlist-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleWishlist()">&times;</span>
+            <h2>My Wishlist</h2>
+            <div id="wishlist-items"></div>
+            <div class="wishlist-summary">
+                <p id="wishlist-empty-message" style="display: none; text-align: center; color: #666; padding: 2rem;">Your wishlist is empty</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content product-modal-content">
+            <span class="close" onclick="closeProductModal()">&times;</span>
+            <div class="product-modal-body">
+                <div class="product-modal-image">
+                    <div id="modal-product-emoji"></div>
+                </div>
+                <div class="product-modal-info">
+                    <h2 id="modal-product-name"></h2>
+                    <p id="modal-product-brand"></p>
+                    <div id="modal-product-rating"></div>
+                    <div class="modal-product-price">
+                        <span id="modal-current-price"></span>
+                        <span id="modal-original-price"></span>
+                        <span id="modal-discount"></span>
+                    </div>
+                    <div class="product-description">
+                        <h4>Product Details</h4>
+                        <p id="modal-product-description"></p>
+                    </div>
+                    <div class="size-selector">
+                        <h4>Size</h4>
+                        <div class="size-options">
+                            <button class="size-btn" data-size="S">S</button>
+                            <button class="size-btn" data-size="M">M</button>
+                            <button class="size-btn" data-size="L">L</button>
+                            <button class="size-btn" data-size="XL">XL</button>
+                            <button class="size-btn" data-size="XXL">XXL</button>
+                        </div>
+                    </div>
+                    <div class="quantity-selector">
+                        <h4>Quantity</h4>
+                        <div class="quantity-controls">
+                            <button onclick="changeQuantity(-1)">-</button>
+                            <span id="quantity-display">1</span>
+                            <button onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="add-to-cart-modal" onclick="addToCartFromModal()">Add to Bag</button>
+                        <button class="add-to-wishlist-modal" onclick="addToWishlistFromModal()">Add to Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section footer-brand">
+                <a href="index.html" class="footer-logo">FashionHub</a>
+                <p>Your trusted men's fashion partner delivering the latest trends and timeless styles. Quality, comfort, and style in every piece.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Men's Categories</h3>
+                <ul>
+                    <li><a href="#" onclick="filterMensCategory('shirts')">Shirts</a></li>
+                    <li><a href="#" onclick="filterMensCategory('pants')">Pants & Jeans</a></li>
+                    <li><a href="#" onclick="filterMensCategory('shoes')">Shoes</a></li>
+                    <li><a href="#" onclick="filterMensCategory('formal')">Formal Wear</a></li>
+                    <li><a href="#" onclick="filterMensCategory('casual')">Casual Wear</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FashionHub Men's Fashion. All rights reserved. | Made with ❤️ for style-conscious men</p>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/men.js"></script>
+    <script>
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCountGlobal();
+        });
+    </script>
+</body>
+</html>

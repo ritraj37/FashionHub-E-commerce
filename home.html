@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home & Living - FashionHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">FashionHub</a>
+            </div>
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search home products..." id="search-input">
+                    <button class="search-btn" type="button" onclick="searchProducts()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21L16.514 16.506M19 10.5C19 15.194 15.194 19 10.5 19S2 15.194 2 10.5 5.806 2 10.5 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-icons">
+                <a href="index.html" class="offers-link">
+                    <span class="offers-text">Home</span>
+                </a>
+                <div class="dropdown profile-dropdown">
+                    <button class="dropdown-btn profile-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Profile</span>
+                    </button>
+                    <div class="dropdown-menu profile-menu">
+                        <a href="profile.html#personal-info" class="dropdown-item">My Profile</a>
+                        <a href="profile.html#orders" class="dropdown-item">My Orders</a>
+                        <a href="profile.html#wishlist" class="dropdown-item">Wishlist</a>
+                        <a href="profile.html#coupons" class="dropdown-item">Rewards</a>
+                        <a href="profile.html#payments" class="dropdown-item">Wallet</a>
+                        <a href="profile.html#address-book" class="dropdown-item">Addresses</a>
+                        <a href="profile.html#notifications" class="dropdown-item">Notifications</a>
+                        <a href="profile.html#help-support" class="dropdown-item">Help Center</a>
+                        <hr class="dropdown-divider">
+                        <a href="index.html" class="dropdown-item" onclick="handleLogout()">Logout</a>
+                    </div>
+                </div>
+                <button class="icon-btn wishlist-btn" onclick="toggleWishlist()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.9987 7.05 2.9987C5.59096 2.9987 4.19169 3.5783 3.16 4.61C2.1283 5.6417 1.5487 7.04097 1.5487 8.5C1.5487 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span class="wishlist-count" id="wishlist-count">0</span>
+                </button>
+                <a href="cart.html" class="icon-btn cart-btn">
+                    <div class="cart-icon-wrapper">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V17C17 18.1 16.1 19 15 19H9C7.9 19 7 18.1 7 17V13M9 19C7.9 19 7 19.9 7 21S7.9 23 9 23 11 22.1 11 21 10.1 19 9 19ZM20 19C18.9 19 18 19.9 18 21S18.9 23 20 23 22 22.1 22 21 21.1 19 20 19Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        
+                    </div>
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+        <nav class="category-nav">
+            <div class="category-container">
+                <div class="dropdown category-dropdown">
+                    <button class="dropdown-btn category-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 12L21 12M3 6L21 6M3 18L21 18" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Categories
+                    </button>
+                    <div class="dropdown-menu category-menu">
+                        <a href="men.html" class="dropdown-item">Men</a>
+                        <a href="women.html" class="dropdown-item">Women</a>
+                        <a href="kids.html" class="dropdown-item">Kids</a>
+                        <a href="home.html" class="dropdown-item">Home & Living</a>
+                        <a href="beauty.html" class="dropdown-item">Beauty</a>
+                        <a href="electronics.html" class="dropdown-item">Electronics</a>
+                    </div>
+                </div>
+                 <div class="quick-categories">
+                    <a href="#" class="category-link active" onclick="filterCategory('all')">All Home</a>
+                    <a href="#" class="category-link" onclick="filterCategory('furniture')">Furniture</a>
+                    <a href="#" class="category-link" onclick="filterCategory('decor')">Decor</a>
+                    <a href="#" class="category-link" onclick="filterCategory('kitchen')">Kitchen</a>
+                    <a href="#" class="category-link" onclick="filterCategory('bedding')">Bedding</a>
+                    <a href="#" class="category-link" onclick="filterCategory('lighting')">Lighting</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-banner">
+            <div class="hero-slider">
+                <div class="slide active" data-bg="gradient1">
+                    <div class="banner-content">
+                        <div class="content-left">
+                            <span class="badge">Home Collection</span>
+                            <h1>Transform Your <span class="highlight">Living Space</span></h1>
+                            <p>Discover beautiful home decor, furniture, and essentials to make your house a home</p>
+                            <div class="cta-buttons">
+                                <button class="shop-btn primary" onclick="scrollToProducts()">Shop Home</button>
+                                <button class="shop-btn secondary" onclick="filterCategory('furniture')">Furniture</button>
+                            </div>
+                            <div class="stats">
+                                <div class="stat">
+                                    <span class="number">2K+</span>
+                                    <span class="label">Home Products</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">100+</span>
+                                    <span class="label">Brands</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-right">
+                            <div class="hero-image">
+                                <div class="floating-card card1">
+                                    <span class="emoji">🛋️</span>
+                                    <span class="text">Furniture</span>
+                                </div>
+                                <div class="floating-card card2">
+                                    <span class="emoji">🕯️</span>
+                                    <span class="text">Decor</span>
+                                </div>
+                                <div class="floating-card card3">
+                                    <span class="emoji">🍽️</span>
+                                    <span class="text">Kitchen</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slide" data-bg="gradient2">
+                    <div class="banner-content">
+                        <div class="content-left">
+                            <span class="badge">Limited Time</span>
+                            <h1>Home <span class="highlight">Sale</span> 2024</h1>
+                            <p>Get up to 40% off on home & living products. Limited time offer!</p>
+                            <div class="cta-buttons">
+                                <button class="shop-btn primary" onclick="filterCategory('furniture')">Shop Furniture</button>
+                                <button class="shop-btn secondary" onclick="filterCategory('decor')">Shop Decor</button>
+                            </div>
+                            <div class="offer-timer">
+                                <span class="timer-label">Offer ends in:</span>
+                                <div class="timer" id="countdown">
+                                    <span class="time-unit"><span id="days">05</span><small>Days</small></span>
+                                    <span class="time-unit"><span id="hours">12</span><small>Hours</small></span>
+                                    <span class="time-unit"><span id="minutes">30</span><small>Min</small></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-right">
+                            <div class="hero-image">
+                                <div class="discount-badge">40% OFF</div>
+                                <div class="floating-card card1">
+                                    <span class="emoji">🛏️</span>
+                                    <span class="text">Bedding</span>
+                                </div>
+                                <div class="floating-card card2">
+                                    <span class="emoji">💡</span>
+                                    <span class="text">Lighting</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div class="slider-controls">
+                <button class="slider-btn prev" onclick="changeSlide(-1)">‹</button>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+                <button class="slider-btn next" onclick="changeSlide(1)">›</button>
+            </div> -->
+        </section>
+
+        <section class="categories-section">
+            <h2>Shop Home Categories</h2>
+            <div class="category-cards">
+                <div class="category-card" onclick="filterCategory('furniture')">
+                    <div class="category-image">🛋️</div>
+                    <h3>Furniture</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('decor')">
+                    <div class="category-image">🖼️</div>
+                    <h3>Home Decor</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('kitchen')">
+                    <div class="category-image">🍽️</div>
+                    <h3>Kitchen</h3>
+                </div>
+                <div class="category-card" onclick="filterCategory('bedding')">
+                    <div class="category-image">🛏️</div>
+                    <h3>Bedding</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="products-section">
+            <div class="section-header">
+                <h2>Home & Living Collection</h2>
+                <div class="filter-options">
+                    <select id="sort-select" onchange="sortProducts()">
+                        <option value="default">Sort by</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name A-Z</option>
+                        <option value="rating">Rating</option>
+                    </select>
+                </div>
+            </div>
+            <div class="products-grid" id="products-grid"></div>
+        </section>
+    </main>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleCart()">&times;</span>
+            <h2>Shopping Bag</h2>
+            <div id="cart-items"></div>
+            <div class="cart-summary">
+                <div class="cart-total">Total: ₹<span id="cart-total">0</span></div>
+                <button class="checkout-btn" onclick="goToCheckout()">Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="wishlist-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleWishlist()">&times;</span>
+            <h2>My Wishlist</h2>
+            <div id="wishlist-items"></div>
+        </div>
+    </div>
+
+    <script>
+        // Simplified home products
+        const homeProducts = [
+            { id: 401, name: "Sofa Set", brand: "ComfortHome", price: 25999, originalPrice: 35999, category: "home", subcategory: "furniture", emoji: "🛋️", discount: "28% OFF", rating: 4.5, reviews: 89 },
+            { id: 402, name: "Wall Art", brand: "DecorStyle", price: 1299, originalPrice: 1899, category: "home", subcategory: "decor", emoji: "🖼️", discount: "32% OFF", rating: 4.3, reviews: 156 },
+            { id: 403, name: "Dining Set", brand: "KitchenPro", price: 15999, originalPrice: 22999, category: "home", subcategory: "furniture", emoji: "🍽️", discount: "30% OFF", rating: 4.6, reviews: 67 },
+            { id: 404, name: "Bed Sheet Set", brand: "SoftSleep", price: 1599, originalPrice: 2299, category: "home", subcategory: "bedding", emoji: "🛏️", discount: "30% OFF", rating: 4.4, reviews: 234 },
+            { id: 405, name: "Table Lamp", brand: "BrightLight", price: 899, originalPrice: 1299, category: "home", subcategory: "lighting", emoji: "💡", discount: "31% OFF", rating: 4.2, reviews: 123 },
+            { id: 406, name: "Storage Box", brand: "OrganizeIt", price: 699, originalPrice: 999, category: "home", subcategory: "storage", emoji: "📦", discount: "30% OFF", rating: 4.1, reviews: 98 }
+        ];
+
+        let products = homeProducts;
+        let cart = JSON.parse(localStorage.getItem('fashionCart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('fashionWishlist')) || [];
+        let filteredProducts = [...products];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            updateWishlistCount();
+            loadProducts();
+        });
+
+        function loadProducts() {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">${product.emoji}</div>
+                    <div class="product-info">
+                        <div class="product-brand">${product.brand}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-value">${product.rating}</span>
+                            <span class="rating-text">(${product.reviews})</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">₹${product.price}</span>
+                            <span class="original-price">₹${product.originalPrice}</span>
+                            <span class="discount">${product.discount}</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Bag</button>
+                            <button class="add-to-wishlist" onclick="addToWishlist(${product.id})">♡</button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        function filterCategory(subcategory) {
+            document.querySelectorAll('.category-link').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (subcategory === 'all') {
+                filteredProducts = [...products];
+            } else {
+                filteredProducts = products.filter(product => product.subcategory === subcategory);
+            }
+            
+            loadProducts();
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            localStorage.setItem('fashionCart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${product.name} added to bag!`);
+        }
+
+        function addToWishlist(productId) {
+            const product = products.find(p => p.id === productId);
+            
+            if (!wishlist.find(item => item.id === productId)) {
+                wishlist.push(product);
+                localStorage.setItem('fashionWishlist', JSON.stringify(wishlist));
+                updateWishlistCount();
+                alert(`${product.name} added to wishlist!`);
+            }
+        }
+
+        function updateCartCount() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = cartCount;
+        }
+
+        function updateWishlistCount() {
+            document.getElementById('wishlist-count').textContent = wishlist.length;
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleWishlist() {
+            const modal = document.getElementById('wishlist-modal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            
+            if (searchTerm === '') {
+                filteredProducts = [...products];
+            } else {
+                filteredProducts = products.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.brand.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            loadProducts();
+        }
+
+        function sortProducts() {
+            const sortValue = document.getElementById('sort-select').value;
+            
+            switch(sortValue) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                default:
+                    filteredProducts = [...products];
+                    return;
+            }
+            
+            loadProducts();
+        }
+    </script>
+</body>
+</html>
